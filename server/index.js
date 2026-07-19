@@ -332,8 +332,15 @@ app.delete('/api/gallery/:id', (req, res) => {
 
 // Upload API
 const multer = require('multer');
-const uploadDir = path.join(__dirname, '..', 'public', 'uploads');
-if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+const isVercel = process.env.VERCEL === '1';
+const uploadDir = isVercel
+  ? path.join('/tmp', 'uploads')
+  : path.join(__dirname, '..', 'public', 'uploads');
+try {
+  if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+} catch (e) {
+  console.warn('Uploads dizini oluşturulamadı (Vercel read-only):', e.message);
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
