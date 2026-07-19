@@ -5,3 +5,5 @@ vibe-coder-kit/
 *.log
 .omo/
 .codegraph/
+
+.vercel
