@@ -482,11 +482,16 @@ app.use((err, req, res, next) => {
 });
 
 // ========== START SERVER ==========
-app.listen(PORT, () => {
-  console.log(`\n  ✦ Evval Otel Sunucusu Başlatıldı ✦`);
-  console.log(`  ─────────────────────────────`);
-  console.log(`  Site:   http://localhost:${PORT}`);
-  console.log(`  Admin:  http://localhost:${PORT}/admin/login`);
-  console.log(`  Şifre:  ${process.env.ADMIN_PASSWORD || 'EvvalAdmin2026'}`);
-  console.log(`  ─────────────────────────────\n`);
-});
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`\n  ✦ Evval Otel Sunucusu Başlatıldı ✦`);
+    console.log(`  ─────────────────────────────`);
+    console.log(`  Site:   http://localhost:${PORT}`);
+    console.log(`  Admin:  http://localhost:${PORT}/admin/login`);
+    console.log(`  Şifre:  ${process.env.ADMIN_PASSWORD || 'EvvalAdmin2026'}`);
+    console.log(`  ─────────────────────────────\n`);
+  });
+}
+
+// Vercel serverless export
+module.exports = app;
