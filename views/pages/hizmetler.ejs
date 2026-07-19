@@ -1,0 +1,115 @@
+<%- include('../partials/head', { lang, content: {}, page: 'services' }) %>
+<%- include('../partials/navbar', { lang, page: 'services' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1920&q=80" alt="Evval Otel Hizmetler" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Our Services' : 'Hizmetlerimiz' %></h1>
+      <p><%= lang === 'en' ? 'Premium services designed for your comfort' : 'Konforunuz için tasarlanmış premium hizmetler' %></p>
+    </div>
+  </section>
+
+  <!-- SERVICES INTRO -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Concierge' : 'Concierge' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Everything at Your Fingertips' : 'Her Şey Parmaklarınızın Ucunda' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+        <p class="section-desc reveal reveal-delay-3"><%= lang === 'en' ? 'Our dedicated team is available 24/7 to ensure your stay is seamless and memorable.' : 'Adanmış ekibimiz, konaklamanızın kusursuz ve unutulmaz olması için 7/24 hizmetinizdedir.' %></p>
+      </div>
+
+      <!-- SERVICES GRID -->
+      <div class="services-glass-grid" style="background: transparent; padding: 0;">
+        <div class="value-card reveal" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">🎯</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? '24/7 Concierge' : '7/24 Concierge' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Personal concierge service available around the clock. From restaurant reservations to special requests, we handle every detail so you can focus on enjoying your stay.' : 'Günün her saati kişisel concierge hizmeti. Restoran rezervasyonlarından özel isteklere kadar her detayla ilgileniyoruz, böylece siz konaklamanızın keyfini çıkarabilirsiniz.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-1" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">🚗</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? 'Airport Transfer' : 'Havalimanı Transfer' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Luxury VIP transfer service from and to the airport. Travel in comfort with our fleet of premium vehicles, including Mercedes V-Class and S-Class options.' : 'Havalimanına ve havalimanından lüks VIP transfer hizmeti. Mercedes V-Class ve S-Class seçenekleri dahil premium araç filomuzla konforlu seyahat edin.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-2" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">🍽</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? 'Room Service' : 'Oda Servisi' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Enjoy our full restaurant menu in the comfort of your room. Available daily from 07:00 to 23:00 with elegant table setup and presentation.' : 'Restoran menümüzün tamamını odanızın konforunda tadın. Her gün 07:00 - 23:00 arası zarif masa kurulumu ve sunumuyla hizmetinizde.' %></p>
+        </div>
+        <div class="value-card reveal" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">👔</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? 'Laundry Service' : 'Çamaşırhane' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Same-day laundry and pressing service with meticulous care for your garments. Express service available within 3 hours.' : 'Kıyafetlerinize titizlikle yaklaşan aynı gün çamaşırhane ve ütü hizmeti. 3 saat içinde ekspres servis mevcuttur.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-1" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">🧥</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? 'Dry Cleaning' : 'Kuru Temizleme' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Professional dry cleaning service for delicate fabrics and formal wear. Pickup and delivery to your room with care guarantee.' : 'Narin kumaşlar ve resmi kıyafetler için profesyonel kuru temizleme hizmeti. Özen garantisiyle odanıza teslim alma ve teslim etme.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-2" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">🚙</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? 'Car Rental' : 'Araç Kiralama' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Premium vehicle rental with delivery to the hotel. Choose from luxury sedans, SUVs, and convertibles for exploring the region at your own pace.' : 'Otele teslim ile premium araç kiralama. Bölgeyi kendi hızınızda keşfetmek için lüks sedan, SUV ve cabrio seçenekleri.' %></p>
+        </div>
+        <div class="value-card reveal" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">🗺</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? 'Tour Guide' : 'Tur Rehberliği' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Private guided tours to historical sites, natural wonders, and hidden gems. Custom itineraries crafted by our local experts.' : 'Tarihi yerlere, doğal güzelliklere ve gizli hazinelere özel rehberli turlar. Yerel uzmanlarımız tarafından hazırlanan özel rotalar.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-1" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">🥂</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? 'VIP Lounge' : 'VIP Lounge' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Exclusive VIP lounge access with premium beverages, canapés, and a private space for relaxation or business meetings.' : 'Premium içecekler, kanapeler ve rahatlama veya iş toplantıları için özel alan sunan özel VIP lounge erişimi.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-2" style="background: var(--white); padding: 40px 28px;">
+          <div class="value-card-icon">🎂</div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 500; margin-bottom: 12px; color: var(--brown-dark);"><%= lang === 'en' ? 'Special Occasions' : 'Özel Günler' %></h3>
+          <p style="font-size: 0.95rem; color: var(--text-light); line-height: 1.7;"><%= lang === 'en' ? 'Birthday surprises, anniversary celebrations, romantic room setups, and custom event planning for unforgettable moments.' : 'Doğum günü sürprizleri, yıldönümü kutlamaları, romantik oda düzenlemeleri ve unutulmaz anlar için özel etkinlik planlaması.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL SERVICES -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Premium Extras' : 'Premium Ekstra' %></div>
+        <h2 class="section-title section-title-light reveal reveal-delay-1"><%= lang === 'en' ? 'Additional Services' : 'Ek Hizmetler' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="services-glass-grid">
+        <div class="glass-card reveal">
+          <div class="glass-card-icon">👶</div>
+          <h3><%= lang === 'en' ? 'Babysitting' : 'Bebek Bakımı' %></h3>
+          <p><%= lang === 'en' ? 'Professional childcare service with certified caregivers, available on request for your peace of mind.' : 'Sertifikalı bakıcılarla profesyonel çocuk bakım hizmeti, içinizin rahat etmesi için talep üzerine mevcuttur.' %></p>
+        </div>
+        <div class="glass-card reveal reveal-delay-1">
+          <div class="glass-card-icon">💊</div>
+          <h3><%= lang === 'en' ? 'Medical Assistance' : 'Tıbbi Yardım' %></h3>
+          <p><%= lang === 'en' ? '24/7 on-call doctor service and partnerships with nearby hospitals for your health and safety.' : 'Sağlığınız ve güvenliğiniz için 7/24 nöbetçi doktor hizmeti ve yakındaki hastanelerle ortaklık.' %></p>
+        </div>
+        <div class="glass-card reveal reveal-delay-2">
+          <div class="glass-card-icon">💼</div>
+          <h3><%= lang === 'en' ? 'Business Center' : 'İş Merkezi' %></h3>
+          <p><%= lang === 'en' ? 'Fully equipped business center with meeting rooms, printing services, and high-speed internet.' : 'Toplantı odaları, baskı hizmetleri ve yüksek hızlı internetle tam donanımlı iş merkezi.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1920&q=80');">
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content reveal">
+      <h2><%= lang === 'en' ? 'Need Something Special?' : 'Özel Bir Şeye İhtiyacınız Var mı?' %></h2>
+      <p><%= lang === 'en' ? 'Our concierge team is ready to make your wishes come true.' : 'Concierge ekibimiz dileklerinizi gerçekleştirmeye hazır.' %></p>
+      <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn hero-btn-gold"><%= lang === 'en' ? 'Contact Us' : 'Bize Ulaşın' %></a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

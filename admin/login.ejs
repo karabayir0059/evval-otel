@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Girişi - Evval Hotel</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-login">
+    <div class="admin-login-box">
+      <h1>Evval<span class="gold">.</span></h1>
+      <p>Admin Paneli</p>
+
+      <div id="loginError" class="admin-error" style="display: <%= error ? 'block' : 'none' %>;"><%= error || '' %></div>
+
+      <form method="POST" action="/api/auth/login" id="loginForm">
+        <div class="form-group">
+          <label for="username">Kullanıcı Adı</label>
+          <input type="text" id="username" name="username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Şifre</label>
+          <input type="password" id="password" name="password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="admin-btn admin-btn-primary" style="width:100%;margin-top:16px;">Giriş Yap</button>
+      </form>
+    </div>
+  </div>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<%- include('../partials/head', { lang, content: {}, page: 'contact' }) %>
+<%- include('../partials/navbar', { lang, page: 'contact' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1920&q=80" alt="Evval Otel İletişim" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Contact Us' : 'İletişim' %></h1>
+      <p><%= lang === 'en' ? 'We would love to hear from you' : 'Sizden haber almak isteriz' %></p>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM + INFO -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Get in Touch' : 'Bize Ulaşın' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Send Us a Message' : 'Bize Mesaj Gönderin' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="contact-grid">
+        <!-- FORM -->
+        <div class="reveal">
+          <form id="contactForm" style="background: var(--white); padding: 40px; box-shadow: 0 4px 40px rgba(44,24,16,0.06);">
+            <div class="form-group">
+              <label for="contactName"><%= lang === 'en' ? 'Full Name' : 'Ad Soyad' %></label>
+              <input type="text" id="contactName" name="name" class="form-control" required placeholder="<%= lang === 'en' ? 'Enter your full name' : 'Adınızı ve soyadınızı girin' %>">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div class="form-group">
+                <label for="contactEmail"><%= lang === 'en' ? 'Email' : 'E-posta' %></label>
+                <input type="email" id="contactEmail" name="email" class="form-control" required placeholder="<%= lang === 'en' ? 'your@email.com' : 'eposta@adresiniz.com' %>">
+              </div>
+              <div class="form-group">
+                <label for="contactPhone"><%= lang === 'en' ? 'Phone' : 'Telefon' %></label>
+                <input type="tel" id="contactPhone" name="phone" class="form-control" placeholder="+90 5XX XXX XX XX">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage"><%= lang === 'en' ? 'Message' : 'Mesajınız' %></label>
+              <textarea id="contactMessage" name="message" class="form-control" rows="6" required placeholder="<%= lang === 'en' ? 'How can we help you?' : 'Size nasıl yardımcı olabiliriz?' %>"></textarea>
+            </div>
+            <button type="submit" class="hero-btn hero-btn-gold" style="border: 1px solid var(--gold); background: var(--gold); color: var(--white); padding: 14px 48px; cursor: pointer; width: 100%; text-align: center;">
+              <%= lang === 'en' ? 'Send Message' : 'Mesaj Gönder' %>
+            </button>
+            <div id="contactSuccess" style="display: none; text-align: center; margin-top: 16px; color: var(--gold); font-family: var(--font-sans); font-size: 0.85rem;">
+              <%= lang === 'en' ? 'Thank you! We will get back to you shortly.' : 'Teşekkürler! En kısa sürede size dönüş yapacağız.' %>
+            </div>
+          </form>
+        </div>
+
+        <!-- CONTACT INFO -->
+        <div class="contact-info reveal reveal-delay-1">
+          <h3><%= lang === 'en' ? 'Contact Information' : 'İletişim Bilgileri' %></h3>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📍</div>
+            <div class="contact-info-text">
+              <h4><%= lang === 'en' ? 'Address' : 'Adres' %></h4>
+              <p><%= typeof settings !== 'undefined' && settings.contact ? settings.contact.address : 'Örnek Mahallesi, Doğa Caddesi No:1, Evval Otel' %></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📞</div>
+            <div class="contact-info-text">
+              <h4><%= lang === 'en' ? 'Phone' : 'Telefon' %></h4>
+              <p><%= typeof settings !== 'undefined' && settings.contact ? settings.contact.phone : '+90 (555) 123 45 67' %></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">✉</div>
+            <div class="contact-info-text">
+              <h4><%= lang === 'en' ? 'Email' : 'E-posta' %></h4>
+              <p><%= typeof settings !== 'undefined' && settings.contact ? settings.contact.email : 'info@evvalotel.com' %></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🕐</div>
+            <div class="contact-info-text">
+              <h4><%= lang === 'en' ? 'Reception Hours' : 'Resepsiyon Saatleri' %></h4>
+              <p><%= typeof settings !== 'undefined' && settings.working_hours ? (settings.working_hours[lang] || settings.working_hours.tr) : '7/24 Hizmetinizde' %></p>
+            </div>
+          </div>
+
+          <!-- SOCIAL MEDIA -->
+          <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--beige);">
+            <h4 style="font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;"><%= lang === 'en' ? 'Follow Us' : 'Bizi Takip Edin' %></h4>
+            <div style="display: flex; gap: 12px;">
+              <a href="<%= typeof settings !== 'undefined' && settings.social ? settings.social.instagram : '#' %>" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--beige-dark); border-radius: 50%; color: var(--brown-dark); font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; transition: all 0.3s;" aria-label="Instagram">IG</a>
+              <a href="<%= typeof settings !== 'undefined' && settings.social ? settings.social.facebook : '#' %>" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--beige-dark); border-radius: 50%; color: var(--brown-dark); font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; transition: all 0.3s;" aria-label="Facebook">FB</a>
+              <a href="<%= typeof settings !== 'undefined' && settings.social ? settings.social.twitter : '#' %>" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--beige-dark); border-radius: 50%; color: var(--brown-dark); font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; transition: all 0.3s;" aria-label="Twitter">TW</a>
+              <a href="<%= typeof settings !== 'undefined' && settings.social ? settings.social.tripadvisor : '#' %>" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--beige-dark); border-radius: 50%; color: var(--brown-dark); font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; transition: all 0.3s;" aria-label="TripAdvisor">TA</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="section section-white" style="padding: 0;">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0!2d29.0!3d37.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDAwJzAwLjAiTiAyOcKwMDAnMDAuMCJF!5e0!3m2!1str!2str!4v1"
+      class="contact-map"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Evval Otel Konum">
+    </iframe>
+  </section>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var formData = new FormData(contactForm);
+      var data = Object.fromEntries(formData.entries());
+      try {
+        var res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var result = await res.json();
+        if (result.success) {
+          contactForm.reset();
+          document.getElementById('contactSuccess').style.display = 'block';
+          setTimeout(function() {
+            document.getElementById('contactSuccess').style.display = 'none';
+          }, 5000);
+        }
+      } catch (err) {
+        alert('<%= lang === "en" ? "An error occurred. Please try again." : "Bir hata oluştu. Lütfen tekrar deneyin." %>');
+      }
+    });
+  }
+});
+</script>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

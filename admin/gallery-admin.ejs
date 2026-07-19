@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri - Evval Hotel Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-logo">Evval<span>.</span></div>
+      <nav class="admin-sidebar-nav">
+        <a href="/admin/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">📊 Dashboard</a>
+        <a href="/admin/pages" class="<%= page === 'pages' ? 'active' : '' %>">📝 Sayfalar</a>
+        <a href="/admin/rooms" class="<%= page === 'rooms' ? 'active' : '' %>">🛏 Odalar</a>
+        <a href="/admin/menu" class="<%= page === 'menu' ? 'active' : '' %>">🍽 Menü</a>
+        <a href="/admin/gallery" class="<%= page === 'gallery' ? 'active' : '' %>">🖼 Galeri</a>
+        <a href="/admin/reviews" class="<%= page === 'reviews' ? 'active' : '' %>">⭐ Yorumlar</a>
+        <a href="/admin/reservations" class="<%= page === 'reservations' ? 'active' : '' %>">📋 Rezervasyonlar</a>
+        <a href="/admin/settings" class="<%= page === 'settings' ? 'active' : '' %>">⚙ Ayarlar</a>
+      </nav>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-header">
+        <h1>Galeri</h1>
+        <button id="logoutBtn" class="admin-btn">Çıkış</button>
+      </div>
+
+      <!-- Upload Form -->
+      <div class="admin-section" style="margin-bottom:32px;">
+        <h2>Görsel Yükle</h2>
+        <form id="uploadForm" action="/api/upload" method="POST" enctype="multipart/form-data" style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;">
+          <div class="form-group" style="flex:1;min-width:200px;">
+            <label>Dosya Seç</label>
+            <input type="file" name="image" accept="image/*" required>
+          </div>
+          <button type="submit" class="admin-btn admin-btn-gold">Yükle</button>
+        </form>
+      </div>
+
+      <!-- Uploaded Images Grid -->
+      <% if (uploads && uploads.length > 0) { %>
+        <div class="admin-section" style="margin-bottom:32px;">
+          <h2>Yüklenen Görseller</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px;">
+            <% uploads.forEach(function(img) { %>
+              <div style="border:1px solid #ddd;border-radius:8px;overflow:hidden;">
+                <img src="<%= img.url %>" alt="<%= img.filename %>" style="width:100%;height:120px;object-fit:cover;">
+                <div style="padding:6px;font-size:11px;word-break:break-all;text-align:center;"><%= img.filename %></div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      <% } %>
+
+      <!-- Add Gallery Entry Form -->
+      <div class="admin-section" style="margin-bottom:32px;">
+        <h2>Galeriye Ekle</h2>
+        <form id="addGalleryForm">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label>Başlık (TR)</label>
+              <input type="text" name="titleTr" required>
+            </div>
+            <div class="form-group">
+              <label>Başlık (EN)</label>
+              <input type="text" name="titleEn" required>
+            </div>
+            <div class="form-group">
+              <label>Kategori</label>
+              <input type="text" name="category" placeholder="Otel, Oda, Manzara...">
+            </div>
+            <div class="form-group">
+              <label>Görsel URL</label>
+              <input type="text" name="image" placeholder="/uploads/..." required>
+            </div>
+          </div>
+          <button type="submit" class="admin-btn admin-btn-gold">Galeriye Ekle</button>
+        </form>
+      </div>
+
+      <!-- Gallery Table -->
+      <h2>Galeri Öğeleri</h2>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Görsel</th>
+            <th>Başlık (TR)</th>
+            <th>Başlık (EN)</th>
+            <th>Kategori</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (gallery && gallery.length > 0) { %>
+            <% gallery.forEach(function(item) { %>
+              <tr>
+                <td>
+                  <% if (item.image) { %>
+                    <img src="<%= item.image %>" alt="<%= item.titleTr %>" style="width:80px;height:50px;object-fit:cover;border-radius:4px;">
+                  <% } else { %>
+                    <span style="color:#999;">Yok</span>
+                  <% } %>
+                </td>
+                <td><%= item.titleTr %></td>
+                <td><%= item.titleEn %></td>
+                <td><%= item.category %></td>
+                <td>
+                  <button class="admin-btn admin-btn-danger" onclick="deleteGalleryItem('<%= item.id %>')">Sil</button>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr><td colspan="5" style="text-align:center;">Henüz galeri öğesi yok</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.getElementById('addGalleryForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      const res = await fetch('/api/gallery', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) location.reload();
+      else alert('Galeri öğesi eklenirken hata oluştu');
+    });
+
+    async function deleteGalleryItem(id) {
+      if (!confirm('Bu galeri öğesini silmek istediğinize emin misiniz?')) return;
+      const res = await fetch('/api/gallery/' + id, { method: 'DELETE' });
+      if (res.ok) location.reload();
+      else alert('Silme işleminde hata oluştu');
+    }
+  </script>
+</body>
+</html>

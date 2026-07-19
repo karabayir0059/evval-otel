@@ -1,0 +1,130 @@
+<%- include('../partials/head', { lang, content: {}, page: 'gallery' }) %>
+<%- include('../partials/navbar', { lang, page: 'gallery' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80" alt="Evval Otel Galeri" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Gallery' : 'Galeri' %></h1>
+      <p><%= lang === 'en' ? 'Visual stories of beauty and elegance' : 'Güzellik ve zarafetin görsel hikayeleri' %></p>
+    </div>
+  </section>
+
+  <!-- FILTER & GALLERY -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Our Spaces' : 'Alanlarımız' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Explore Evval' : 'Evval\'ı Keşfedin' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+
+      <!-- FILTER BUTTONS -->
+      <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 48px;" class="reveal">
+        <button class="gallery-filter-btn admin-btn active" data-filter="all"><%= lang === 'en' ? 'All' : 'Tümü' %></button>
+        <button class="gallery-filter-btn admin-btn" data-filter="exterior"><%= lang === 'en' ? 'Exterior' : 'Dış Mekan' %></button>
+        <button class="gallery-filter-btn admin-btn" data-filter="spa">Spa</button>
+        <button class="gallery-filter-btn admin-btn" data-filter="pool"><%= lang === 'en' ? 'Pool' : 'Havuz' %></button>
+        <button class="gallery-filter-btn admin-btn" data-filter="restaurant"><%= lang === 'en' ? 'Restaurant' : 'Restoran' %></button>
+        <button class="gallery-filter-btn admin-btn" data-filter="rooms"><%= lang === 'en' ? 'Rooms' : 'Oda' %></button>
+      </div>
+
+      <!-- GALLERY GRID -->
+      <div class="gallery-grid">
+        <% if (gallery && gallery.length) { %>
+          <% gallery.forEach(function(item) { %>
+            <div class="gallery-grid-item gallery-item" data-category="<%= item.category %>" data-lightbox data-src="<%= item.image %>">
+              <img src="<%= item.image %>" alt="<%= item.title || '' %>" loading="lazy">
+              <div class="gallery-overlay">
+                <div style="text-align: center;">
+                  <span class="gallery-overlay-icon">⤢</span>
+                  <% if (item.title) { %>
+                    <p style="color: var(--white); font-family: var(--font-heading); font-size: 1rem; margin-top: 8px;"><%= item.title %></p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <!-- Fallback gallery items -->
+          <div class="gallery-grid-item gallery-item" data-category="exterior" data-lightbox data-src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Otel Dış Mekan" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="exterior" data-lightbox data-src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80" alt="Otel Bahçe" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="rooms" data-lightbox data-src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80" alt="Premium Oda" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="rooms" data-lightbox data-src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Suit Oda" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="spa" data-lightbox data-src="https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=600&q=80" alt="Spa" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="spa" data-lightbox data-src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Hamam" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="pool" data-lightbox data-src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Sonsuzluk Havuzu" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="pool" data-lightbox data-src="https://images.unsplash.com/photo-1572331165267-854da2b021b1?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1572331165267-854da2b021b1?w=600&q=80" alt="Havuz Alanı" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="restaurant" data-lightbox data-src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Restoran" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="restaurant" data-lightbox data-src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Restoran İç Mekan" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="exterior" data-lightbox data-src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="Otel Gece" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+          <div class="gallery-grid-item gallery-item" data-category="rooms" data-lightbox data-src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Banyo" loading="lazy">
+            <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Virtual Tour' : 'Sanal Tur' %></div>
+        <h2 class="section-title section-title-light reveal reveal-delay-1"><%= lang === 'en' ? 'Experience Evval' : 'Evval Deneyimi' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+        <p class="section-desc reveal reveal-delay-3" style="color: rgba(255,255,255,0.7);"><%= lang === 'en' ? 'Take a virtual journey through our property and discover the beauty that awaits you.' : 'Tesisimizde sanal bir yolculuğa çıkın ve sizi bekleyen güzelliği keşfedin.' %></p>
+      </div>
+      <div class="reveal" style="max-width: 900px; margin: 0 auto; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80') center/cover;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44,24,16,0.6);"></div>
+          <div style="position: relative; z-index: 2; text-align: center;">
+            <div style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; cursor: pointer; background: rgba(201,168,76,0.15);">
+              <span style="color: var(--gold); font-size: 2rem; margin-left: 4px;">▶</span>
+            </div>
+            <p style="color: var(--white); font-family: var(--font-heading); font-size: 1.3rem;"><%= lang === 'en' ? 'Watch Our Story' : 'Hikayemizi İzleyin' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="/js/gallery.js"></script>
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

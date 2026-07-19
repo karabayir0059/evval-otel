@@ -1,0 +1,40 @@
+{
+  "home": {
+    "tr": {
+      "hero_subtitle": "Hoş Geldiniz",
+      "hero_title": "Evval Otel",
+      "hero_desc": "Doğanın kalbinde, huzurun kucağında unutulmaz bir butik otel deneyimi.",
+      "hero_btn": "Rezervasyon Yap",
+      "welcome_tag": "Hakkımızda",
+      "welcome_title": "Huzurun ve Zarafetin Buluştuğu Nokta",
+      "welcome_p1": "Evval Otel, doğanın eşsiz güzellikleriyle çevrili, her detayı özenle düşünülmüş bir butik otel deneyimi sunar. Sessizliğin ve huzurun hüküm sürdüğü bu özel mekanda, zamansız bir lüksün tadını çıkaracaksınız.",
+      "welcome_p2": "Geleneksel mimari ile modern tasarımın buluştuğu odalarımız, şefimizin özenle hazırladığı lezzetler ve yenileyici spa deneyimimizle sizi bekliyoruz."
+    },
+    "en": {
+      "hero_subtitle": "Welcome",
+      "hero_title": "Evval Hotel",
+      "hero_desc": "An unforgettable boutique hotel experience in the heart of nature, in the arms of tranquility.",
+      "hero_btn": "Book Now",
+      "welcome_tag": "About Us",
+      "welcome_title": "Where Tranquility Meets Elegance",
+      "welcome_p1": "Evval Hotel offers a boutique hotel experience surrounded by nature's unique beauty, where every detail has been carefully considered. In this special place where silence and peace reign, you will enjoy timeless luxury.",
+      "welcome_p2": "We invite you to experience our rooms where traditional architecture meets modern design, flavors carefully prepared by our chef, and our rejuvenating spa experience."
+    }
+  },
+  "about": {
+    "tr": {
+      "hero_title": "Hakkımızda",
+      "hero_desc": "Evval Otel'in hikayesi, doğaya ve misafirperverliğe olan tutkumuzla başladı.",
+      "story_title": "Hikayemiz",
+      "story_p1": "Evval Otel, yıllar süren hayallerin ve titiz çalışmaların sonucu olarak kapılarını açtı. Doğanın en güzel köşelerinden birinde, misafirlerimize huzur ve lüksü bir arada sunmak için tasarlandı.",
+      "story_p2": "Her bir detayı özenle seçilmiş odalarımız, doğal malzemelerle harmanlanmış modern mimarimiz ve samimi hizmet anlayışımızla, konuklarımıza unutulmaz bir deneyim yaşatmayı hedefliyoruz."
+    },
+    "en": {
+      "hero_title": "About Us",
+      "hero_desc": "The story of Evval Hotel began with our passion for nature and hospitality.",
+      "story_title": "Our Story",
+      "story_p1": "Evval Hotel opened its doors as the result of years of dreams and meticulous work. It was designed to offer our guests peace and luxury together in one of nature's most beautiful corners.",
+      "story_p2": "With our carefully selected rooms, modern architecture blended with natural materials, and sincere service approach, we aim to provide our guests with an unforgettable experience."
+    }
+  }
+}

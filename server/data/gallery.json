@@ -1,0 +1,8 @@
+[
+  { "id": 1, "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80", "category": "dis-mekan", "tr": { "title": "Otel Dış Görünüş" }, "en": { "title": "Hotel Exterior" } },
+  { "id": 2, "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80", "category": "spa", "tr": { "title": "Spa Merkezi" }, "en": { "title": "Spa Center" } },
+  { "id": 3, "image": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80", "category": "havuz", "tr": { "title": "Sonsuzluk Havuzu" }, "en": { "title": "Infinity Pool" } },
+  { "id": 4, "image": "https://images.unsplash.com/photo-1551918120-9739cb430c6d?w=800&q=80", "category": "restoran", "tr": { "title": "Restoran" }, "en": { "title": "Restaurant" } },
+  { "id": 5, "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80", "category": "oda", "tr": { "title": "Executive Suit" }, "en": { "title": "Executive Suite" } },
+  { "id": 6, "image": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80", "category": "oda", "tr": { "title": "Klasik Oda" }, "en": { "title": "Classic Room" } }
+]

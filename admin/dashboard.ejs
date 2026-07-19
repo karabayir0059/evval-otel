@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Evval Hotel Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-logo">Evval<span>.</span></div>
+      <nav class="admin-sidebar-nav">
+        <a href="/admin/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">📊 Dashboard</a>
+        <a href="/admin/pages" class="<%= page === 'pages' ? 'active' : '' %>">📝 Sayfalar</a>
+        <a href="/admin/rooms" class="<%= page === 'rooms' ? 'active' : '' %>">🛏 Odalar</a>
+        <a href="/admin/menu" class="<%= page === 'menu' ? 'active' : '' %>">🍽 Menü</a>
+        <a href="/admin/gallery" class="<%= page === 'gallery' ? 'active' : '' %>">🖼 Galeri</a>
+        <a href="/admin/reviews" class="<%= page === 'reviews' ? 'active' : '' %>">⭐ Yorumlar</a>
+        <a href="/admin/reservations" class="<%= page === 'reservations' ? 'active' : '' %>">📋 Rezervasyonlar</a>
+        <a href="/admin/settings" class="<%= page === 'settings' ? 'active' : '' %>">⚙ Ayarlar</a>
+      </nav>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-header">
+        <h1>Dashboard</h1>
+        <button id="logoutBtn" class="admin-btn">Çıkış</button>
+      </div>
+
+      <div class="admin-cards">
+        <div class="admin-card">
+          <h3>Toplam Oda</h3>
+          <div class="number"><%= roomsCount %></div>
+        </div>
+        <div class="admin-card">
+          <h3>Yorumlar</h3>
+          <div class="number"><%= reviewsCount %></div>
+        </div>
+        <div class="admin-card">
+          <h3>Bekleyen Yorumlar</h3>
+          <div class="number"><%= pendingReviews %></div>
+        </div>
+        <div class="admin-card">
+          <h3>Rezervasyonlar</h3>
+          <div class="number"><%= reservationsCount %></div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;">
+        <a href="/admin/rooms" class="admin-btn admin-btn-gold">Yeni Oda Ekle</a>
+      </div>
+
+      <h2 style="margin-top:32px;margin-bottom:16px;">Son Rezervasyonlar</h2>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>İsim</th>
+            <th>E-posta</th>
+            <th>Giriş</th>
+            <th>Çıkış</th>
+            <th>Durum</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (recentReservations && recentReservations.length > 0) { %>
+            <% recentReservations.forEach(function(r) { %>
+              <tr>
+                <td><%= r.id %></td>
+                <td><%= r.name %></td>
+                <td><%= r.email %></td>
+                <td><%= r.checkIn %></td>
+                <td><%= r.checkOut %></td>
+                <td><span class="admin-badge"><%= r.status %></span></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr><td colspan="6" style="text-align:center;">Henüz rezervasyon yok</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

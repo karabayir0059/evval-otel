@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menü - Evval Hotel Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-logo">Evval<span>.</span></div>
+      <nav class="admin-sidebar-nav">
+        <a href="/admin/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">📊 Dashboard</a>
+        <a href="/admin/pages" class="<%= page === 'pages' ? 'active' : '' %>">📝 Sayfalar</a>
+        <a href="/admin/rooms" class="<%= page === 'rooms' ? 'active' : '' %>">🛏 Odalar</a>
+        <a href="/admin/menu" class="<%= page === 'menu' ? 'active' : '' %>">🍽 Menü</a>
+        <a href="/admin/gallery" class="<%= page === 'gallery' ? 'active' : '' %>">🖼 Galeri</a>
+        <a href="/admin/reviews" class="<%= page === 'reviews' ? 'active' : '' %>">⭐ Yorumlar</a>
+        <a href="/admin/reservations" class="<%= page === 'reservations' ? 'active' : '' %>">📋 Rezervasyonlar</a>
+        <a href="/admin/settings" class="<%= page === 'settings' ? 'active' : '' %>">⚙ Ayarlar</a>
+      </nav>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-header">
+        <h1>Menü</h1>
+        <button id="logoutBtn" class="admin-btn">Çıkış</button>
+      </div>
+
+      <!-- Add Menu Item Form -->
+      <div class="admin-section" style="margin-bottom:32px;">
+        <h2>Yeni Menü Öğesi Ekle</h2>
+        <form id="addMenuForm">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label>Ad (TR)</label>
+              <input type="text" name="titleTr" required>
+            </div>
+            <div class="form-group">
+              <label>Ad (EN)</label>
+              <input type="text" name="titleEn" required>
+            </div>
+            <div class="form-group">
+              <label>Açıklama (TR)</label>
+              <textarea name="descriptionTr" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Açıklama (EN)</label>
+              <textarea name="descriptionEn" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Kategori</label>
+              <input type="text" name="category" placeholder="Başlangıç, Ana Yorum, İçecek...">
+            </div>
+            <div class="form-group">
+              <label>Fiyat (₺)</label>
+              <input type="number" name="price" min="0" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Görsel URL</label>
+            <input type="text" name="image" placeholder="/images/menu/...">
+          </div>
+          <button type="submit" class="admin-btn admin-btn-gold">Menü Öğesi Ekle</button>
+        </form>
+      </div>
+
+      <!-- Menu Table -->
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Görsel</th>
+            <th>Ad (TR)</th>
+            <th>Ad (EN)</th>
+            <th>Kategori</th>
+            <th>Fiyat</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (menu && menu.length > 0) { %>
+            <% menu.forEach(function(item) { %>
+              <tr>
+                <td>
+                  <% if (item.image) { %>
+                    <img src="<%= item.image %>" alt="<%= item.titleTr %>" style="width:60px;height:40px;object-fit:cover;border-radius:4px;">
+                  <% } else { %>
+                    <span style="color:#999;">Yok</span>
+                  <% } %>
+                </td>
+                <td><%= item.titleTr %></td>
+                <td><%= item.titleEn %></td>
+                <td><%= item.category %></td>
+                <td><%= item.price %> ₺</td>
+                <td>
+                  <button class="admin-btn admin-btn-danger" onclick="deleteMenuItem('<%= item.id %>')">Sil</button>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr><td colspan="6" style="text-align:center;">Henüz menü öğesi eklenmemiş</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.getElementById('addMenuForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      data.price = Number(data.price);
+      const res = await fetch('/api/menu', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) location.reload();
+      else alert('Menü öğesi eklenirken hata oluştu');
+    });
+
+    async function deleteMenuItem(id) {
+      if (!confirm('Bu menü öğesini silmek istediğinize emin misiniz?')) return;
+      const res = await fetch('/api/menu/' + id, { method: 'DELETE' });
+      if (res.ok) location.reload();
+      else alert('Silme işleminde hata oluştu');
+    }
+  </script>
+</body>
+</html>

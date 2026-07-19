@@ -1,0 +1,22 @@
+{
+  "hotel": {
+    "tr": { "name": "Evval Otel", "slogan": "Huzurun ve Zarafetin Buluştuğu Nokta" },
+    "en": { "name": "Evval Hotel", "slogan": "Where Tranquility Meets Elegance" }
+  },
+  "contact": {
+    "address": "Örnek Mahallesi, Doğa Caddesi No:1, 34000 İstanbul",
+    "phone": "+90 (555) 123 45 67",
+    "email": "info@evvalotel.com",
+    "whatsapp": "905551234567"
+  },
+  "social": {
+    "instagram": "#",
+    "facebook": "#",
+    "twitter": "#",
+    "tripadvisor": "#"
+  },
+  "working_hours": {
+    "tr": "Check-in: 14:00 | Check-out: 12:00",
+    "en": "Check-in: 14:00 | Check-out: 12:00"
+  }
+}

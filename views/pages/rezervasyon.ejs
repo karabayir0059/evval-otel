@@ -1,0 +1,230 @@
+<%- include('../partials/head', { lang, content: {}, page: 'reservation' }) %>
+<%- include('../partials/navbar', { lang, page: 'reservation' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1920&q=80" alt="Evval Otel Rezervasyon" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Book Your Stay' : 'Rezervasyon Yap' %></h1>
+      <p><%= lang === 'en' ? 'Reserve your room in just a few steps' : 'Sadece birkaç adıda odanızı ayırtın' %></p>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="section section-cream">
+    <div class="container">
+      <form id="bookingForm" class="booking-form reveal">
+
+        <!-- STEP INDICATOR -->
+        <div class="booking-step-indicator">
+          <div class="booking-step-num active">
+            <div class="step-circle">1</div>
+            <div class="step-label"><%= lang === 'en' ? 'Dates' : 'Tarihler' %></div>
+          </div>
+          <div class="booking-step-num">
+            <div class="step-circle">2</div>
+            <div class="step-label"><%= lang === 'en' ? 'Room' : 'Oda' %></div>
+          </div>
+          <div class="booking-step-num">
+            <div class="step-circle">3</div>
+            <div class="step-label"><%= lang === 'en' ? 'Guest Info' : 'Misafir Bilgi' %></div>
+          </div>
+          <div class="booking-step-num">
+            <div class="step-circle">4</div>
+            <div class="step-label"><%= lang === 'en' ? 'Requests' : 'Talepler' %></div>
+          </div>
+          <div class="booking-step-num">
+            <div class="step-circle">5</div>
+            <div class="step-label"><%= lang === 'en' ? 'Confirm' : 'Onay' %></div>
+          </div>
+        </div>
+
+        <!-- STEP 1: DATES -->
+        <div class="booking-step active">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 8px; text-align: center;">
+            <%= lang === 'en' ? 'Select Your Dates' : 'Tarihlerinizi Seçin' %>
+          </h3>
+          <p style="text-align: center; color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; margin-bottom: 32px;">
+            <%= lang === 'en' ? 'Choose your check-in and check-out dates' : 'Giriş ve çıkış tarihlerinizi seçin' %>
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 500px; margin: 0 auto;">
+            <div class="form-group">
+              <label for="checkin"><%= lang === 'en' ? 'Check-in Date' : 'Giriş Tarihi' %></label>
+              <input type="date" id="checkin" name="checkin" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="checkout"><%= lang === 'en' ? 'Check-out Date' : 'Çıkış Tarihi' %></label>
+              <input type="date" id="checkout" name="checkout" class="form-control" required>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 500px; margin: 0 auto;">
+            <div class="form-group">
+              <label for="adults"><%= lang === 'en' ? 'Adults' : 'Yetişkin' %></label>
+              <select id="adults" name="adults" class="form-control">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="children"><%= lang === 'en' ? 'Children' : 'Çocuk' %></label>
+              <select id="children" name="children" class="form-control">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: ROOM SELECTION -->
+        <div class="booking-step">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 8px; text-align: center;">
+            <%= lang === 'en' ? 'Choose Your Room' : 'Odanızı Seçin' %>
+          </h3>
+          <p style="text-align: center; color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; margin-bottom: 32px;">
+            <%= lang === 'en' ? 'Select the perfect room for your stay' : 'Konaklamanız için mükemmel odayı seçin' %>
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 600px; margin: 0 auto;">
+            <% if (rooms && rooms.length) { %>
+              <% rooms.forEach(function(room, index) { %>
+                <% var roomData = lang === 'en' ? room.en : room.tr; %>
+                <label style="display: flex; gap: 20px; padding: 20px; background: var(--cream); border: 2px solid transparent; border-radius: 2px; cursor: pointer; transition: all 0.3s;" class="room-option" data-room-id="<%= room._id || room.id || index %>">
+                  <input type="radio" name="room" value="<%= room._id || room.id || index %>" style="display: none;" <%= index === 0 ? 'checked' : '' %>>
+                  <img src="<%= room.image || 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=200&q=80' %>" alt="<%= roomData.name %>" style="width: 100px; height: 80px; object-fit: cover; border-radius: 2px; flex-shrink: 0;">
+                  <div style="flex: 1;">
+                    <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 4px;"><%= roomData.name %></div>
+                    <div style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 8px;"><%= roomData.category || '' %></div>
+                    <div style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--gold); font-weight: 500;">₺<%= room.price ? room.price.toLocaleString('tr-TR') : '---' %> <span style="font-family: var(--font-sans); font-size: 0.7rem; color: var(--text-muted); font-weight: 300;">/<%= lang === 'en' ? 'night' : 'gece' %></span></div>
+                  </div>
+                </label>
+              <% }); %>
+            <% } else { %>
+              <label style="display: flex; gap: 20px; padding: 20px; background: var(--cream); border: 2px solid transparent; border-radius: 2px; cursor: pointer; transition: all 0.3s;" class="room-option">
+                <input type="radio" name="room" value="standard" checked style="display: none;">
+                <div style="width: 100px; height: 80px; background: var(--beige); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">🛏</div>
+                <div style="flex: 1;">
+                  <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 4px;"><%= lang === 'en' ? 'Standard Room' : 'Standart Oda' %></div>
+                  <div style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--gold); font-weight: 500;">₺3.500 <span style="font-family: var(--font-sans); font-size: 0.7rem; color: var(--text-muted); font-weight: 300;">/<%= lang === 'en' ? 'night' : 'gece' %></span></div>
+                </div>
+              </label>
+              <label style="display: flex; gap: 20px; padding: 20px; background: var(--cream); border: 2px solid transparent; border-radius: 2px; cursor: pointer; transition: all 0.3s;" class="room-option">
+                <input type="radio" name="room" value="deluxe" style="display: none;">
+                <div style="width: 100px; height: 80px; background: var(--beige); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">✨</div>
+                <div style="flex: 1;">
+                  <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 4px;"><%= lang === 'en' ? 'Deluxe Suite' : 'Deluxe Süit' %></div>
+                  <div style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--gold); font-weight: 500;">₺5.500 <span style="font-family: var(--font-sans); font-size: 0.7rem; color: var(--text-muted); font-weight: 300;">/<%= lang === 'en' ? 'night' : 'gece' %></span></div>
+                </div>
+              </label>
+              <label style="display: flex; gap: 20px; padding: 20px; background: var(--cream); border: 2px solid transparent; border-radius: 2px; cursor: pointer; transition: all 0.3s;" class="room-option">
+                <input type="radio" name="room" value="premium" style="display: none;">
+                <div style="width: 100px; height: 80px; background: var(--beige); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">👑</div>
+                <div style="flex: 1;">
+                  <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 4px;"><%= lang === 'en' ? 'Premium Suite' : 'Premium Süit' %></div>
+                  <div style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--gold); font-weight: 500;">₺8.500 <span style="font-family: var(--font-sans); font-size: 0.7rem; color: var(--text-muted); font-weight: 300;">/<%= lang === 'en' ? 'night' : 'gece' %></span></div>
+                </div>
+              </label>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- STEP 3: GUEST INFO -->
+        <div class="booking-step">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 8px; text-align: center;">
+            <%= lang === 'en' ? 'Guest Information' : 'Misafir Bilgileri' %>
+          </h3>
+          <p style="text-align: center; color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; margin-bottom: 32px;">
+            <%= lang === 'en' ? 'Please provide your contact details' : 'Lütfen iletişim bilgilerinizi girin' %>
+          </p>
+          <div style="max-width: 500px; margin: 0 auto;">
+            <div class="form-group">
+              <label for="guestName"><%= lang === 'en' ? 'Full Name' : 'Ad Soyad' %></label>
+              <input type="text" id="guestName" name="guestName" class="form-control" required placeholder="<%= lang === 'en' ? 'Enter your full name' : 'Adınızı ve soyadınızı girin' %>">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div class="form-group">
+                <label for="guestEmail"><%= lang === 'en' ? 'Email' : 'E-posta' %></label>
+                <input type="email" id="guestEmail" name="guestEmail" class="form-control" required placeholder="<%= lang === 'en' ? 'your@email.com' : 'eposta@adresiniz.com' %>">
+              </div>
+              <div class="form-group">
+                <label for="guestPhone"><%= lang === 'en' ? 'Phone' : 'Telefon' %></label>
+                <input type="tel" id="guestPhone" name="guestPhone" class="form-control" required placeholder="+90 5XX XXX XX XX">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: SPECIAL REQUESTS -->
+        <div class="booking-step">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 8px; text-align: center;">
+            <%= lang === 'en' ? 'Special Requests' : 'Özel Talepler' %>
+          </h3>
+          <p style="text-align: center; color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; margin-bottom: 32px;">
+            <%= lang === 'en' ? 'Let us know if you have any special requirements' : 'Özel istekleriniz varsa bize bildirin' %>
+          </p>
+          <div style="max-width: 500px; margin: 0 auto;">
+            <div class="form-group">
+              <label for="specialRequests"><%= lang === 'en' ? 'Special Requests or Notes' : 'Özel Talepler veya Notlar' %></label>
+              <textarea id="specialRequests" name="specialRequests" class="form-control" rows="5" placeholder="<%= lang === 'en' ? 'e.g., early check-in, extra pillows, dietary requirements, celebration arrangements...' : 'örn: erken giriş, ekstra yastık, diyet gereksinimleri, kutlama düzenlemeleri...' %>"></textarea>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+              <label style="display: flex; align-items: center; gap: 10px; padding: 14px; background: var(--cream); border-radius: 2px; cursor: pointer; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text);">
+                <input type="checkbox" name="airport_transfer" value="yes" style="accent-color: var(--gold);">
+                <%= lang === 'en' ? 'Airport Transfer' : 'Havalimanı Transfer' %>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; padding: 14px; background: var(--cream); border-radius: 2px; cursor: pointer; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text);">
+                <input type="checkbox" name="flower_arrangement" value="yes" style="accent-color: var(--gold);">
+                <%= lang === 'en' ? 'Flower Arrangement' : 'Çiçek Düzenlemesi' %>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; padding: 14px; background: var(--cream); border-radius: 2px; cursor: pointer; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text);">
+                <input type="checkbox" name="champagne" value="yes" style="accent-color: var(--gold);">
+                <%= lang === 'en' ? 'Champagne Welcome' : 'Şampanya Karşılama' %>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; padding: 14px; background: var(--cream); border-radius: 2px; cursor: pointer; font-family: var(--font-sans); font-size: 0.85rem; color: var(--text);">
+                <input type="checkbox" name="spa_package" value="yes" style="accent-color: var(--gold);">
+                <%= lang === 'en' ? 'Spa Package' : 'Spa Paketi' %>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: CONFIRMATION -->
+        <div class="booking-step">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 500; color: var(--brown-dark); margin-bottom: 8px; text-align: center;">
+            <%= lang === 'en' ? 'Confirm Your Reservation' : 'Rezervasyonunuzu Onaylayın' %>
+          </h3>
+          <p style="text-align: center; color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem; margin-bottom: 32px;">
+            <%= lang === 'en' ? 'Please review your details before confirming' : 'Lütfen onaylamadan önce bilgilerinizi kontrol edin' %>
+          </p>
+          <div id="bookingSummary" style="max-width: 500px; margin: 0 auto; background: var(--cream); padding: 32px; border-radius: 2px;">
+            <!-- Filled dynamically by booking.js -->
+            <p style="text-align: center; color: var(--text-muted); font-family: var(--font-sans); font-size: 0.85rem;">
+              <%= lang === 'en' ? 'Your reservation details will appear here.' : 'Rezervasyon detaylarınız burada görünecek.' %>
+            </p>
+          </div>
+        </div>
+
+        <!-- NAVIGATION BUTTONS -->
+        <div class="booking-nav">
+          <button type="button" id="bookingPrev" class="admin-btn" style="display: none;">
+            ← <%= lang === 'en' ? 'Previous' : 'Geri' %>
+          </button>
+          <button type="button" id="bookingNext" class="admin-btn admin-btn-gold" style="margin-left: auto;">
+            <%= lang === 'en' ? 'Next' : 'İleri' %> →
+          </button>
+          <button type="button" id="bookingSubmit" class="admin-btn admin-btn-gold" style="display: none;">
+            ✓ <%= lang === 'en' ? 'Confirm Reservation' : 'Rezervasyonu Onayla' %>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="/js/booking.js"></script>
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

@@ -1,0 +1,137 @@
+<%- include('../partials/head', { lang, content: {}, page: 'faq' }) %>
+<%- include('../partials/navbar', { lang, page: 'faq' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1920&q=80" alt="Evval Otel SSS" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Frequently Asked Questions' : 'Sıkça Sorulan Sorular' %></h1>
+      <p><%= lang === 'en' ? 'Everything you need to know before your visit' : 'Ziyaretinizden önce bilmeniz gereken her şey' %></p>
+    </div>
+  </section>
+
+  <!-- FAQ - REZERVASYON -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'FAQ' : 'SSS' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Reservation Questions' : 'Rezervasyon Soruları' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            <%= lang === 'en' ? 'How can I make a reservation?' : 'Nasıl rezervasyon yapabilirim?' %>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p><%= lang === 'en' ? 'You can make a reservation directly through our website using the booking form, by calling us at +90 (555) 123 45 67, or by sending an email to reservation@evvalotel.com. We also accept reservations through Booking.com and other major platforms.' : 'Web sitemizdeki rezervasyon formunu kullanarak, +90 (555) 123 45 67 numaralı telefondan bizi arayarak veya reservation@evvalotel.com adresine e-posta göndererek doğrudan rezervasyon yapabilirsiniz. Booking.com ve diğer büyük platformlar üzerinden de rezervasyon kabul ediyoruz.' %></p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <%= lang === 'en' ? 'What is your cancellation policy?' : 'İptal politikanız nedir?' %>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p><%= lang === 'en' ? 'Free cancellation is available up to 7 days before your check-in date. For cancellations made 3-7 days prior, a 50% charge applies. Cancellations within 72 hours of check-in are subject to the full room charge. Special period reservations may have different policies.' : 'Giriş tarihinizden 7 gün öncesine kadar ücretsiz iptal yapılabilir. 3-7 gün önce yapılan iptallerde %50 ücret uygulanır. Girişe 72 saat kala yapılan iptallerde tam oda ücreti tahsil edilir. Özel dönem rezervasyonlarında farklı politikalar geçerli olabilir.' %></p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <%= lang === 'en' ? 'Do you require a deposit for reservations?' : 'Rezervasyon için depozito istiyor musunuz?' %>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p><%= lang === 'en' ? 'Yes, we require a deposit equivalent to one night\'s stay to confirm your reservation. The remaining balance is settled upon check-in. We accept all major credit cards, bank transfers, and cash payments.' : 'Evet, rezervasyonunuzu onaylamak için bir gecelik konaklama bedeline eşit depozito istiyoruz. Kalan bakiye giriş sırasında ödenir. Tüm büyük kredi kartlarını, banka havalelerini ve nakit ödemeleri kabul ediyoruz.' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ - KONAKLAMA -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'FAQ' : 'SSS' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Stay Questions' : 'Konaklama Soruları' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            <%= lang === 'en' ? 'What are the check-in and check-out times?' : 'Giriş ve çıkış saatleri nedir?' %>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p><%= lang === 'en' ? 'Check-in time is 14:00 and check-out time is 12:00 (noon). Early check-in and late check-out may be available upon request, subject to availability. Please contact our reception at least 24 hours in advance.' : 'Giriş saati 14:00, çıkış saati 12:00\'dir (öğle). Erken giriş ve geç çıkış talep üzerine, müsaitlik durumuna göre sağlanabilir. Lütfen resepsiyonla en az 24 saat öncesinden iletişime geçin.' %></p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <%= lang === 'en' ? 'Is breakfast included in the room rate?' : 'Kahvaltı oda fiyatına dahil mi?' %>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p><%= lang === 'en' ? 'Yes, a full Turkish breakfast buffet is included in all room rates. Served daily from 07:30 to 10:30 in our restaurant, it features fresh local products, homemade pastries, organic eggs, and a selection of regional cheeses and olives.' : 'Evet, tüm oda fiyatlarına tam Türk kahvaltı büfesi dahildir. Restoranımızda her gün 07:30 - 10:30 arası servis edilir; taze yerel ürünler, ev yapımı hamur işleri, organik yumurtalar ve bölgesel peynirler ile zeytin çeşitleri sunulmaktadır.' %></p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <%= lang === 'en' ? 'Do you accommodate special dietary requirements?' : 'Özel diyet gereksinimlerini karşılıyor musunuz?' %>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p><%= lang === 'en' ? 'Absolutely. Our kitchen team can accommodate vegetarian, vegan, gluten-free, halal, and other dietary needs. Please inform us at the time of booking or at least 48 hours before arrival so we can prepare accordingly.' : 'Kesinlikle. Mutfak ekibimiz vejetaryen, vegan, glutensiz, helal ve diğer diyet ihtiyaçlarını karşılayabilir. Lütfen rezervasyon sırasında veya varıştan en az 48 saat önce bizi bilgilendirdiğinizde hazırlık yapabiliriz.' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ - TESİS -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'FAQ' : 'SSS' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Facility Questions' : 'Tesis Soruları' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            <%= lang === 'en' ? 'Is there parking available at the hotel?' : 'Otelde otopark var mı?' %>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p><%= lang === 'en' ? 'Yes, we offer complimentary private parking for all guests. The parking area is secured with 24/7 surveillance and is located directly adjacent to the hotel entrance. Valet parking service is also available.' : 'Evet, tüm misafirlerimize ücretsiz özel otopark sunuyoruz. Otopark alanı 7/24 gözetimle güvence altına alınmıştır ve otel girişinin hemen yanında yer almaktadır. Vale park hizmeti de mevcuttur.' %></p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <%= lang === 'en' ? 'Is Wi-Fi available throughout the property?' : 'Tüm tesiste Wi-Fi mevcut mu?' %>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p><%= lang === 'en' ? 'Yes, complimentary high-speed Wi-Fi is available throughout the entire property, including all rooms, common areas, restaurant, pool area, and garden. Average speeds exceed 100 Mbps.' : 'Evet, tüm odalar, ortak alanlar, restoran, havuz alanı ve bahçe dahil tüm tesiste ücretsiz yüksek hızlı Wi-Fi mevcuttur. Ortalama hız 100 Mbps\'yi aşmaktadır.' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80');">
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content reveal">
+      <h2><%= lang === 'en' ? 'Still Have Questions?' : 'Hâlâ Sorularınız Var mı?' %></h2>
+      <p><%= lang === 'en' ? 'Our team is here to help. Contact us anytime.' : 'Ekibimiz yardımcı olmak için burada. İstediğiniz zaman bize ulaşın.' %></p>
+      <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn hero-btn-gold"><%= lang === 'en' ? 'Contact Us' : 'Bize Ulaşın' %></a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "stars": 5,
+    "tr": { "text": "Hayatımda kaldığım en güzel otel. Her detay düşünülmüş, personel inanılmaz ilgili. Sonsuzluk havuzu ve spa deneyimi unutulmazdı.", "author": "Ayşe Yılmaz", "location": "İstanbul" },
+    "en": { "text": "The most beautiful hotel I've ever stayed in. Every detail has been thought through, the staff is incredibly attentive. The infinity pool and spa experience were unforgettable.", "author": "Ayşe Yılmaz", "location": "Istanbul" },
+    "approved": true,
+    "featured": true
+  },
+  {
+    "id": 2,
+    "stars": 5,
+    "tr": { "text": "Eşsiz bir huzur ve lüks deneyimi. Restorandaki lezzetler ve şefin sunumu mükemmeldi. Kesinlikle tekrar geleceğiz.", "author": "Mehmet Demir", "location": "Ankara" },
+    "en": { "text": "A unique experience of peace and luxury. The flavors at the restaurant and the chef's presentation were perfect. We will definitely come again.", "author": "Mehmet Demir", "location": "Ankara" },
+    "approved": true,
+    "featured": true
+  },
+  {
+    "id": 3,
+    "stars": 5,
+    "tr": { "text": "Sessizliğin ve doğanın kalbinde bir cennet. Odaların tasarımı, manzarası ve ilgili ekip her şeyi kusursuz kıldı.", "author": "Sarah Johnson", "location": "Londra" },
+    "en": { "text": "A paradise in the heart of silence and nature. The room design, the view, and the attentive team made everything perfect.", "author": "Sarah Johnson", "location": "London" },
+    "approved": true,
+    "featured": true
+  }
+]

@@ -1,0 +1,7 @@
+﻿node_modules/
+vibe-coder-kit/
+.next/
+.env
+*.log
+.omo/
+.codegraph/

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odalar - Evval Hotel Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-logo">Evval<span>.</span></div>
+      <nav class="admin-sidebar-nav">
+        <a href="/admin/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">📊 Dashboard</a>
+        <a href="/admin/pages" class="<%= page === 'pages' ? 'active' : '' %>">📝 Sayfalar</a>
+        <a href="/admin/rooms" class="<%= page === 'rooms' ? 'active' : '' %>">🛏 Odalar</a>
+        <a href="/admin/menu" class="<%= page === 'menu' ? 'active' : '' %>">🍽 Menü</a>
+        <a href="/admin/gallery" class="<%= page === 'gallery' ? 'active' : '' %>">🖼 Galeri</a>
+        <a href="/admin/reviews" class="<%= page === 'reviews' ? 'active' : '' %>">⭐ Yorumlar</a>
+        <a href="/admin/reservations" class="<%= page === 'reservations' ? 'active' : '' %>">📋 Rezervasyonlar</a>
+        <a href="/admin/settings" class="<%= page === 'settings' ? 'active' : '' %>">⚙ Ayarlar</a>
+      </nav>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-header">
+        <h1>Odalar</h1>
+        <button id="logoutBtn" class="admin-btn">Çıkış</button>
+      </div>
+
+      <!-- Add Room Form -->
+      <div class="admin-section" style="margin-bottom:32px;">
+        <h2>Yeni Oda Ekle</h2>
+        <form id="addRoomForm">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label>Oda Adı (TR)</label>
+              <input type="text" name="titleTr" required>
+            </div>
+            <div class="form-group">
+              <label>Oda Adı (EN)</label>
+              <input type="text" name="titleEn" required>
+            </div>
+            <div class="form-group">
+              <label>Açıklama (TR)</label>
+              <textarea name="descriptionTr" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Açıklama (EN)</label>
+              <textarea name="descriptionEn" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Kategori</label>
+              <input type="text" name="category" placeholder="standard, deluxe, suite...">
+            </div>
+            <div class="form-group">
+              <label>Fiyat (₺)</label>
+              <input type="number" name="price" min="0" required>
+            </div>
+            <div class="form-group">
+              <label>Kapasite</label>
+              <input type="number" name="capacity" min="1" value="2">
+            </div>
+            <div class="form-group">
+              <label>Görsel URL</label>
+              <input type="text" name="image" placeholder="/images/rooms/...">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Özellikler (virgülle ayırın)</label>
+            <input type="text" name="features" placeholder="WiFi, Klima, Minibar, Deniz Manzarası">
+          </div>
+          <button type="submit" class="admin-btn admin-btn-gold">Oda Ekle</button>
+        </form>
+      </div>
+
+      <!-- Rooms Table -->
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Görsel</th>
+            <th>Ad (TR)</th>
+            <th>Ad (EN)</th>
+            <th>Kategori</th>
+            <th>Fiyat</th>
+            <th>Özellikler</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (rooms && rooms.length > 0) { %>
+            <% rooms.forEach(function(room) { %>
+              <tr>
+                <td>
+                  <% if (room.image) { %>
+                    <img src="<%= room.image %>" alt="<%= room.titleTr %>" style="width:80px;height:50px;object-fit:cover;border-radius:4px;">
+                  <% } else { %>
+                    <span style="color:#999;">Yok</span>
+                  <% } %>
+                </td>
+                <td><%= room.titleTr %></td>
+                <td><%= room.titleEn %></td>
+                <td><%= room.category %></td>
+                <td><%= room.price %> ₺</td>
+                <td><%= room.features %></td>
+                <td>
+                  <button class="admin-btn admin-btn-primary" onclick="editRoom('<%= room.id %>')">Düzenle</button>
+                  <button class="admin-btn admin-btn-danger" onclick="deleteRoom('<%= room.id %>')">Sil</button>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr><td colspan="7" style="text-align:center;">Henüz oda eklenmemiş</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.getElementById('addRoomForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      data.features = data.features ? data.features.split(',').map(f => f.trim()).filter(Boolean) : [];
+      data.price = Number(data.price);
+      data.capacity = Number(data.capacity);
+      const res = await fetch('/api/rooms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) location.reload();
+      else alert('Oda eklenirken hata oluştu');
+    });
+
+    async function deleteRoom(id) {
+      if (!confirm('Bu odayı silmek istediğinize emin misiniz?')) return;
+      const res = await fetch('/api/rooms/' + id, { method: 'DELETE' });
+      if (res.ok) location.reload();
+      else alert('Silme işleminde hata oluştu');
+    }
+
+    function editRoom(id) {
+      window.location.href = '/admin/rooms/edit/' + id;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<%- include('../partials/head', { lang, content: content || {}, page: 'about' }) %>
+<%- include('../partials/navbar', { lang, page: 'about' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1920&q=80" alt="Evval Otel" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= content && content.hero_title ? content.hero_title : (lang === 'en' ? 'About Us' : 'Hakkımızda') %></h1>
+      <p><%= content && content.hero_desc ? content.hero_desc : (lang === 'en' ? 'A story of passion, nature and hospitality' : 'Tutku, doğa ve misafirperverliğin hikayesi') %></p>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="welcome-grid">
+        <div class="welcome-image reveal">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Evval Otel Hikaye" loading="lazy">
+        </div>
+        <div class="welcome-text">
+          <div class="section-tag reveal"><%= lang === 'en' ? 'Our Story' : 'Hikayemiz' %></div>
+          <h2 class="reveal reveal-delay-1"><%= content && content.story_title ? content.story_title : (lang === 'en' ? 'Where Nature Meets Luxury' : 'Doğanın Lüksle Buluştuğu Nokta') %></h2>
+          <p class="reveal reveal-delay-2"><%= content && content.story_p1 ? content.story_p1 : (lang === 'en' ? 'Founded in 2015, Evval Hotel was born from a dream to create a sanctuary where guests could escape the noise of everyday life and reconnect with nature without sacrificing comfort or elegance.' : '2015 yılında kurulan Evval Otel, misafirlerin günlük hayatın gürültüsünden uzaklaşıp, konfor ve zarafetten ödün vermeden doğayla yeniden bağ kurabileceği bir sığınak yaratma hayalinden doğdu.') %></p>
+          <p class="reveal reveal-delay-3"><%= content && content.story_p2 ? content.story_p2 : (lang === 'en' ? 'Every corner of our hotel reflects a deep respect for the surrounding landscape, blended with modern luxury and the warmth of Turkish hospitality.' : 'Otelimizin her köşesi, çevredeki peyzaja derin bir saygıyı, modern lüks ve Türk misafirperverliğinin sıcaklığıyla harmanlayarak yansıtıyor.') %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Our Journey' : 'Yolculuğumuz' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Milestones That Define Us' : 'Bizi Tanımlayan Kilometre Taşları' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <h3><%= lang === 'en' ? '2015 — The Beginning' : '2015 — Başlangıç' %></h3>
+            <p><%= lang === 'en' ? 'Evval Hotel opened its doors with 12 exclusive rooms, a vision of boutique luxury, and a commitment to preserving the natural beauty of the surrounding landscape.' : 'Evval Otel, 12 özel odası, butik lüks vizyonu ve çevredeki doğal güzelliği koruma taahhüdüyle kapılarını açtı.' %></p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-content">
+            <h3><%= lang === 'en' ? '2019 — Spa & Wellness' : '2019 — Spa & Wellness' %></h3>
+            <p><%= lang === 'en' ? 'The state-of-the-art spa and wellness center was inaugurated, offering guests a holistic approach to relaxation with traditional Turkish hammam and modern therapies.' : 'Son teknoloji spa ve wellness merkezi hizmete açıldı, misafirlere geleneksel Türk hamamı ve modern terapilerle bütüncül bir rahatlama deneyimi sunuldu.' %></p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-content">
+            <h3><%= lang === 'en' ? '2023 — Award-Winning Excellence' : '2023 — Ödüllü Mükemmellik' %></h3>
+            <p><%= lang === 'en' ? 'Recognized as one of Turkey\'s top boutique hotels by World Luxury Hotel Awards, affirming our dedication to exceptional guest experiences.' : 'World Luxury Hotel Awards tarafından Türkiye\'nin en iyi butik otellerinden biri olarak tanınarak, olağanüstü misafir deneyimlerine olan adaylığımız teyit edildi.' %></p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Our Values' : 'Değerlerimiz' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'What We Stand For' : 'Neyin Yanında Duruyoruz' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-card-icon">🛡</div>
+          <h3><%= lang === 'en' ? 'Trust' : 'Güven' %></h3>
+          <p><%= lang === 'en' ? 'We build lasting relationships with our guests through transparency, reliability, and unwavering commitment to their safety and privacy.' : 'Misafirlerimizle şeffaflık, güvenilirlik ve güvenlik ile gizliliklerine sarsılmaz bağlılıkla kalıcı ilişkiler kuruyoruz.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-card-icon">✦</div>
+          <h3><%= lang === 'en' ? 'Quality' : 'Kalite' %></h3>
+          <p><%= lang === 'en' ? 'From Egyptian cotton linens to Michelin-inspired cuisine, every detail is curated to exceed the highest standards of luxury hospitality.' : 'Mısır pamuğu çarşaflardan Michelin ilhamlı mutfağa kadar her detay, lüks konaklamanın en yüksek standartlarını aşacak şekilde özenle seçilmiştir.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-card-icon">🌿</div>
+          <h3><%= lang === 'en' ? 'Nature' : 'Doğa' %></h3>
+          <p><%= lang === 'en' ? 'Sustainability is at our core. We use eco-friendly practices, locally sourced materials, and support the preservation of our natural environment.' : 'Sürdürülebilirlik temel değerimizdir. Çevre dostu uygulamalar, yerel kaynaklı malzemeler kullanıyor ve doğal çevremizin korunmasını destekliyoruz.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <div class="value-card-icon">🤝</div>
+          <h3><%= lang === 'en' ? 'Hospitality' : 'Misafirperverlik' %></h3>
+          <p><%= lang === 'en' ? 'Rooted in the rich tradition of Turkish hospitality, we treat every guest as an honored friend, ensuring warmth and genuine care in every interaction.' : 'Zengin Türk misafirperverliği geleneğine dayanarak, her misafiri onurlu bir dost olarak ağırlıyor, her etkileşimde sıcaklık ve gerçek ilgi sağlıyoruz.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Our Team' : 'Ekibimiz' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'The Faces Behind Evval' : 'Evval&apos;ın Arkasındaki Yüzler' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+        <p class="section-desc reveal reveal-delay-3"><%= lang === 'en' ? 'A dedicated team of professionals committed to making your stay unforgettable.' : 'Konaklamanızı unutulmaz kılmaya adanmış profesyonel bir ekip.' %></p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-card-icon" style="font-size: 2rem; border-color: var(--beige-dark);">👤</div>
+          <h3><%= lang === 'en' ? 'Ahmet Yılmaz' : 'Ahmet Yılmaz' %></h3>
+          <p style="color: var(--gold); font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;"><%= lang === 'en' ? 'General Manager' : 'Genel Müdür' %></p>
+          <p><%= lang === 'en' ? 'Over 20 years of luxury hospitality experience, passionate about creating exceptional guest journeys.' : '20 yılı aşkın lüks otelcilik deneyimi, olağanüstü misafir yolculukları yaratma tutkusuyla çalışıyor.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-card-icon" style="font-size: 2rem; border-color: var(--beige-dark);">👤</div>
+          <h3><%= lang === 'en' ? 'Elif Kaya' : 'Elif Kaya' %></h3>
+          <p style="color: var(--gold); font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;"><%= lang === 'en' ? 'Executive Chef' : 'Baş Aşçı' %></p>
+           <p><%= lang === 'en' ? 'A culinary artist blending Anatolian flavors with modern gastronomy, trained in Paris and Istanbul.' : 'Anadolu lezzetlerini modern gastronomiyle harmanlayan, Paris ve İstanbul&apos;da eğitim almış bir mutfak sanatçısı.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-card-icon" style="font-size: 2rem; border-color: var(--beige-dark);">👤</div>
+          <h3><%= lang === 'en' ? 'Zeynep Demir' : 'Zeynep Demir' %></h3>
+          <p style="color: var(--gold); font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;"><%= lang === 'en' ? 'Spa Director' : 'Spa Direktörü' %></p>
+          <p><%= lang === 'en' ? 'Certified wellness practitioner with expertise in traditional Turkish hammam rituals and holistic therapies.' : 'Geleneksel Türk hamamı ritüelleri ve bütüncül terapilerde uzman, sertifikalı wellness uygulayıcısı.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <div class="value-card-icon" style="font-size: 2rem; border-color: var(--beige-dark);">👤</div>
+          <h3><%= lang === 'en' ? 'Murat Öztürk' : 'Murat Öztürk' %></h3>
+          <p style="color: var(--gold); font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;"><%= lang === 'en' ? 'Guest Relations' : 'Misafir İlişkileri' %></p>
+          <p><%= lang === 'en' ? 'Dedicated to ensuring every guest feels at home, with a keen eye for personalized service and attention to detail.' : 'Her misafirin kendini evinde hissetmesini sağlamaya adanmış, kişiselleştirilmiş hizmet ve detaylara dikkat konusunda uzman.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80');">
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content reveal">
+      <h2><%= lang === 'en' ? 'Experience the Evval Difference' : 'Evval Farkını Deneyimleyin' %></h2>
+      <p><%= lang === 'en' ? 'Book your stay and discover why our guests keep coming back.' : 'Konaklamanızı rezerve edin ve misafirlerimizin neden geri dönmeye devam ettiğini keşfedin.' %></p>
+      <a href="/rezervasyon<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn hero-btn-gold"><%= lang === 'en' ? 'Book Now' : 'Rezervasyon Yap' %></a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

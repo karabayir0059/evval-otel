@@ -1,0 +1,144 @@
+<%- include('../partials/head', { lang, content: {}, page: 'restaurant' }) %>
+<%- include('../partials/navbar', { lang, page: 'restaurant' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80" alt="Evval Otel Restoran" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Restaurant' : 'Restoran' %></h1>
+      <p><%= lang === 'en' ? 'A culinary journey through Anatolian and Mediterranean flavors' : 'Anadolu ve Akdeniz lezzetleriyle bir mutfak yolculuğu' %></p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="welcome-grid">
+        <div class="welcome-image reveal">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80" alt="Evval Otel Şef" loading="lazy">
+        </div>
+        <div class="welcome-text">
+          <div class="section-tag reveal"><%= lang === 'en' ? 'Our Restaurant' : 'Restoranımız' %></div>
+          <h2 class="reveal reveal-delay-1"><%= lang === 'en' ? 'Taste the Essence of the Region' : 'Bölgenin Özünü Tadın' %></h2>
+          <p class="reveal reveal-delay-2"><%= lang === 'en' ? 'Our restaurant offers an exquisite dining experience where traditional Anatolian cuisine meets contemporary gastronomy. Every dish is crafted with locally sourced, seasonal ingredients.' : 'Restoranımız, geleneksel Anadolu mutfağının çağdaş gastronomiyle buluştuğu seçkin bir yemek deneyimi sunuyor. Her yemek, mevsimsel ve yerel malzemelerle özenle hazırlanır.' %></p>
+          <p class="reveal reveal-delay-3"><%= lang === 'en' ? 'Our award-winning chef brings years of experience from Istanbul and Paris to create menus that celebrate the rich culinary heritage of Turkey.' : 'Ödüllü şefimiz, İstanbul ve Paris\'teki yılların deneyimini Türkiye\'nin zengin mutfak mirasını kutlayan menüler yaratmak için getiriyor.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Our Menu' : 'Menümüz' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Culinary Masterpieces' : 'Mutfak Başyapıtları' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+
+      <% var categories = [
+        { key: 'breakfast', label_tr: 'Kahvaltı', label_en: 'Breakfast' },
+        { key: 'main', label_tr: 'Ana Yemek', label_en: 'Main Course' },
+        { key: 'dessert', label_tr: 'Tatlı', label_en: 'Dessert' },
+        { key: 'drink', label_tr: 'İçecek', label_en: 'Beverages' }
+      ]; %>
+
+      <% categories.forEach(function(cat) { %>
+        <% var catItems = menu && menu.length ? menu.filter(function(item) { return item.category === cat.key; }) : []; %>
+        <% if (catItems.length) { %>
+          <div style="margin-bottom: 64px;">
+            <h3 class="reveal" style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 500; color: var(--brown-dark); text-align: center; margin-bottom: 8px;">
+              <%= lang === 'en' ? cat.label_en : cat.label_tr %>
+            </h3>
+            <div class="section-line reveal" style="margin-bottom: 40px;"></div>
+            <div class="menu-grid">
+              <% catItems.forEach(function(item, index) { %>
+                <% var itemData = lang === 'en' ? (item.en || item.tr) : item.tr; %>
+                <div class="menu-item reveal<%= index % 2 === 1 ? ' reveal-delay-1' : '' %>">
+                  <div class="menu-item-image">
+                    <img src="<%= item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&q=80' %>" alt="<%= itemData.title %>" loading="lazy">
+                  </div>
+                  <div class="menu-item-content">
+                    <h3><%= itemData.title %></h3>
+                    <p><%= itemData.description %></p>
+                    <div class="menu-item-price">₺<%= item.price ? item.price.toLocaleString('tr-TR') : '---' %></div>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+        <% } %>
+      <% }); %>
+
+      <% if (!menu || !menu.length) { %>
+        <div style="text-align: center; padding: 40px 0;">
+          <p style="font-size: 1.1rem; color: var(--text-light);"><%= lang === 'en' ? 'Menu is being updated. Please check back soon.' : 'Menü güncellenmektedir. Lütfen daha sonra tekrar kontrol edin.' %></p>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- CHEF'S SPECIAL -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Chef\'s Recommendation' : 'Şefin Önerisi' %></div>
+        <h2 class="section-title section-title-light reveal reveal-delay-1"><%= lang === 'en' ? 'Today\'s Special' : 'Günün Özel Lezzeti' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="welcome-grid" style="gap: 60px;">
+        <div class="welcome-image reveal">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="Şefin Önerisi" loading="lazy">
+        </div>
+        <div class="welcome-text" style="padding-right: 0;">
+          <h2 style="color: var(--white);" class="reveal"><%= lang === 'en' ? 'Slow-Roasted Lamb Shoulder' : 'Yavaş Kuzu But' %></h2>
+          <p style="color: rgba(255,255,255,0.7);" class="reveal reveal-delay-1"><%= lang === 'en' ? 'Eight-hour slow-roasted lamb shoulder with rosemary, served with truffle mashed potatoes, roasted root vegetables, and a rich red wine jus.' : 'Sekiz saat yavaş pişirilmiş kuzu but, biberiye ile marine edilmiş, trüflü patates püresi, közlenmiş kök sebzeleri ve zengin kırmızı şarap sosu ile servis edilir.' %></p>
+          <p style="color: var(--gold); font-family: var(--font-heading); font-size: 1.5rem; margin-top: 24px;" class="reveal reveal-delay-2">₺850</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMBIANCE GALLERY -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Ambiance' : 'Atmosfer' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Dining Atmosphere' : 'Yemek Atmosferi' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-grid-item" data-lightbox data-src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Restoran Atmosfer" loading="lazy">
+          <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+        </div>
+        <div class="gallery-grid-item" data-lightbox data-src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Restoran İç Mekan" loading="lazy">
+          <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+        </div>
+        <div class="gallery-grid-item" data-lightbox data-src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="Restoran Teras" loading="lazy">
+          <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+        </div>
+        <div class="gallery-grid-item" data-lightbox data-src="https://images.unsplash.com/photo-1550966871-3ed3cdb51f3a?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb51f3a?w=600&q=80" alt="Restoran Detayı" loading="lazy">
+          <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1920&q=80');">
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content reveal">
+      <h2><%= lang === 'en' ? 'Reserve Your Table' : 'Masanızı Ayırtın' %></h2>
+      <p><%= lang === 'en' ? 'Join us for an unforgettable dining experience.' : 'Unutulmaz bir yemek deneyimi için bize katılın.' %></p>
+      <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn hero-btn-gold"><%= lang === 'en' ? 'Make a Reservation' : 'Rezervasyon Yap' %></a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayarlar - Evval Hotel Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-logo">Evval<span>.</span></div>
+      <nav class="admin-sidebar-nav">
+        <a href="/admin/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">📊 Dashboard</a>
+        <a href="/admin/pages" class="<%= page === 'pages' ? 'active' : '' %>">📝 Sayfalar</a>
+        <a href="/admin/rooms" class="<%= page === 'rooms' ? 'active' : '' %>">🛏 Odalar</a>
+        <a href="/admin/menu" class="<%= page === 'menu' ? 'active' : '' %>">🍽 Menü</a>
+        <a href="/admin/gallery" class="<%= page === 'gallery' ? 'active' : '' %>">🖼 Galeri</a>
+        <a href="/admin/reviews" class="<%= page === 'reviews' ? 'active' : '' %>">⭐ Yorumlar</a>
+        <a href="/admin/reservations" class="<%= page === 'reservations' ? 'active' : '' %>">📋 Rezervasyonlar</a>
+        <a href="/admin/settings" class="<%= page === 'settings' ? 'active' : '' %>">⚙ Ayarlar</a>
+      </nav>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-header">
+        <h1>Ayarlar</h1>
+        <button id="logoutBtn" class="admin-btn">Çıkış</button>
+      </div>
+
+      <form id="settingsForm">
+        <!-- Hotel Info -->
+        <div class="admin-section">
+          <h2>Otel Bilgileri</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label>Otel Adı (TR)</label>
+              <input type="text" name="hotel.nameTr" value="<%= settings.hotel && settings.hotel.nameTr ? settings.hotel.nameTr : '' %>">
+            </div>
+            <div class="form-group">
+              <label>Otel Adı (EN)</label>
+              <input type="text" name="hotel.nameEn" value="<%= settings.hotel && settings.hotel.nameEn ? settings.hotel.nameEn : '' %>">
+            </div>
+            <div class="form-group">
+              <label>Slogan (TR)</label>
+              <input type="text" name="hotel.sloganTr" value="<%= settings.hotel && settings.hotel.sloganTr ? settings.hotel.sloganTr : '' %>">
+            </div>
+            <div class="form-group">
+              <label>Slogan (EN)</label>
+              <input type="text" name="hotel.sloganEn" value="<%= settings.hotel && settings.hotel.sloganEn ? settings.hotel.sloganEn : '' %>">
+            </div>
+          </div>
+        </div>
+
+        <hr style="margin:24px 0;">
+
+        <!-- Contact -->
+        <div class="admin-section">
+          <h2>İletişim</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label>Adres</label>
+              <textarea name="contact.address" rows="2"><%= settings.contact && settings.contact.address ? settings.contact.address : '' %></textarea>
+            </div>
+            <div class="form-group">
+              <label>Telefon</label>
+              <input type="text" name="contact.phone" value="<%= settings.contact && settings.contact.phone ? settings.contact.phone : '' %>">
+            </div>
+            <div class="form-group">
+              <label>E-posta</label>
+              <input type="email" name="contact.email" value="<%= settings.contact && settings.contact.email ? settings.contact.email : '' %>">
+            </div>
+            <div class="form-group">
+              <label>WhatsApp</label>
+              <input type="text" name="contact.whatsapp" value="<%= settings.contact && settings.contact.whatsapp ? settings.contact.whatsapp : '' %>">
+            </div>
+          </div>
+        </div>
+
+        <hr style="margin:24px 0;">
+
+        <!-- Social Media -->
+        <div class="admin-section">
+          <h2>Sosyal Medya</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label>Instagram URL</label>
+              <input type="url" name="social.instagram" value="<%= settings.social && settings.social.instagram ? settings.social.instagram : '' %>" placeholder="https://instagram.com/...">
+            </div>
+            <div class="form-group">
+              <label>Facebook URL</label>
+              <input type="url" name="social.facebook" value="<%= settings.social && settings.social.facebook ? settings.social.facebook : '' %>" placeholder="https://facebook.com/...">
+            </div>
+            <div class="form-group">
+              <label>Twitter URL</label>
+              <input type="url" name="social.twitter" value="<%= settings.social && settings.social.twitter ? settings.social.twitter : '' %>" placeholder="https://twitter.com/...">
+            </div>
+            <div class="form-group">
+              <label>TripAdvisor URL</label>
+              <input type="url" name="social.tripadvisor" value="<%= settings.social && settings.social.tripadvisor ? settings.social.tripadvisor : '' %>" placeholder="https://tripadvisor.com/...">
+            </div>
+          </div>
+        </div>
+
+        <hr style="margin:24px 0;">
+
+        <!-- Working Hours -->
+        <div class="admin-section">
+          <h2>Çalışma Saatleri</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label>Çalışma Saatleri (TR)</label>
+              <textarea name="working_hours.tr" rows="2"><%= settings.working_hours && settings.working_hours.tr ? settings.working_hours.tr : '' %></textarea>
+            </div>
+            <div class="form-group">
+              <label>Working Hours (EN)</label>
+              <textarea name="working_hours.en" rows="2"><%= settings.working_hours && settings.working_hours.en ? settings.working_hours.en : '' %></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;">
+          <button type="submit" class="admin-btn admin-btn-primary">Ayarları Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.getElementById('settingsForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach(function(value, key) {
+        const keys = key.split('.');
+        let obj = data;
+        for (var i = 0; i < keys.length - 1; i++) {
+          if (!obj[keys[i]]) obj[keys[i]] = {};
+          obj = obj[keys[i]];
+        }
+        obj[keys[keys.length - 1]] = value;
+      });
+      const res = await fetch('/api/settings', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) alert('Ayarlar kaydedildi');
+      else alert('Ayarlar kaydedilirken hata oluştu');
+    });
+  </script>
+</body>
+</html>

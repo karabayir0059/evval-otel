@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "category": "kahvalti",
+    "image": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&q=80",
+    "tr": { "category_name": "Kahvaltı", "title": "Serpme Kahvaltı", "desc": "Yöresel peynirler, zeytinler, taze otlar ve ev yapımı reçellerle zengin kahvaltı.", "price": "₺350" },
+    "en": { "category_name": "Breakfast", "title": "Traditional Breakfast", "desc": "Rich breakfast with local cheeses, olives, fresh herbs and homemade jams.", "price": "$35" }
+  },
+  {
+    "id": 2,
+    "category": "ana-yemek",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&q=80",
+    "tr": { "category_name": "Ana Yemek", "title": "Özel Izgara Tabağı", "desc": "Mangalda pişmiş özel marine edilmiş etler, mevsim sebzeleri ve şefin sosuyla.", "price": "₺650" },
+    "en": { "category_name": "Main Course", "title": "Special Grill Plate", "desc": "Specially marinated meats cooked on charcoal, seasonal vegetables and chef's sauce.", "price": "$65" }
+  },
+  {
+    "id": 3,
+    "category": "tatli",
+    "image": "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&q=80",
+    "tr": { "category_name": "Tatlı", "title": "Şefin Tatlısı", "desc": "Mevsim meyveleri ve özel soslarla hazırlanan günün tatlısı.", "price": "₺280" },
+    "en": { "category_name": "Dessert", "title": "Chef's Dessert", "desc": "Daily dessert prepared with seasonal fruits and special sauces.", "price": "$28" }
+  },
+  {
+    "id": 4,
+    "category": "icecek",
+    "image": "https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=400&q=80",
+    "tr": { "category_name": "İçecek", "title": "Özel Kokteyller", "desc": "Premium alkollü ve alkolsüz özel kokteyl seçenekleri.", "price": "₺220" },
+    "en": { "category_name": "Drinks", "title": "Signature Cocktails", "desc": "Premium alcoholic and non-alcoholic signature cocktail options.", "price": "$22" }
+  }
+]

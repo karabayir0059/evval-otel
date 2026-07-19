@@ -1,0 +1,155 @@
+<%- include('../partials/head', { lang, content: {}, page: 'pool' }) %>
+<%- include('../partials/navbar', { lang, page: 'pool' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1920&q=80" alt="Evval Otel Havuz" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Infinity Pool' : 'Sonsuzluk Havuzu' %></h1>
+      <p><%= lang === 'en' ? 'Where the sky meets the water' : 'Gökyüzünün suyla buluştuğu nokta' %></p>
+    </div>
+  </section>
+
+  <!-- POOL FEATURES -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="welcome-grid">
+        <div class="welcome-image reveal">
+          <img src="https://images.unsplash.com/photo-1572331165267-854da2b021b1?w=800&q=80" alt="Evval Havuz" loading="lazy">
+        </div>
+        <div class="welcome-text">
+          <div class="section-tag reveal"><%= lang === 'en' ? 'Our Pool' : 'Havuzumuz' %></div>
+          <h2 class="reveal reveal-delay-1"><%= lang === 'en' ? 'An Infinity Edge Above the Valley' : 'Vadideki Sonsuz Bir Kenar' %></h2>
+          <p class="reveal reveal-delay-2"><%= lang === 'en' ? 'Our stunning 25-meter infinity pool appears to merge seamlessly with the valley below, creating a breathtaking visual experience. Heated to a perfect 28°C year-round.' : 'Etkileyici 25 metrelik sonsuzluk havuzumuz, aşağıdaki vadiyle kusursuz bir şekilde birleşerek nefes kesici bir görsel deneyim yaratıyor. Yıl boyunca mükemmel 28°C\'ye ısıtılır.' %></p>
+          <p class="reveal reveal-delay-3"><%= lang === 'en' ? 'Surrounded by premium sun loungers, cabanas, and lush landscaping, the pool area is designed for ultimate relaxation under the Mediterranean sun.' : 'Premium şezlonglar, kabana&apos;lar ve yeşil peyzajla çevrili havuz alanı, Akdeniz güneşinde mükemmel rahatlama için tasarlanmıştır.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POOL FEATURES GRID -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Pool Features' : 'Havuz Özellikleri' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Everything You Need' : 'İhtiyacınız Olan Her Şey' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-card-icon">🌊</div>
+          <h3><%= lang === 'en' ? 'Infinity Edge' : 'Sonsuz Kenar' %></h3>
+          <p><%= lang === 'en' ? '25-meter vanishing edge pool with panoramic valley views and mountain backdrop.' : 'Panoramik vadi manzaralı ve dağ siluetli 25 metrelik kaybolan kenar havuz.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-card-icon">☀</div>
+          <h3><%= lang === 'en' ? 'Sun Deck' : 'Güvertesi' %></h3>
+          <p><%= lang === 'en' ? 'Premium sun loungers and private cabanas with dedicated poolside service.' : 'Özel havuz kenarı hizmetli premium şezlonglar ve özel kabanalar.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-card-icon">🌡</div>
+          <h3><%= lang === 'en' ? 'Heated Pool' : 'Isıtmalı Havuz' %></h3>
+          <p><%= lang === 'en' ? 'Perfectly heated to 28°C year-round for comfortable swimming in any season.' : 'Her mevsimde rahat yüzme için yıl boyunca mükemmel 28°C\'ye ısıtılır.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <div class="value-card-icon">🧒</div>
+          <h3><%= lang === 'en' ? 'Kids Pool' : 'Çocuk Havuzu' %></h3>
+          <p><%= lang === 'en' ? 'Separate shallow children\'s pool with safety features and fun water elements.' : 'Güvenlik özellikleri ve eğlenceli su unsurlarıyla ayrı sığ çocuk havuzu.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POOL BAR -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="welcome-grid" style="gap: 60px;">
+        <div class="welcome-image reveal">
+          <img src="https://images.unsplash.com/photo-1572451479094-7a4bfc4e1d25?w=800&q=80" alt="Pool Bar" loading="lazy">
+        </div>
+        <div class="welcome-text" style="padding-right: 0;">
+          <div class="section-tag reveal"><%= lang === 'en' ? 'Pool Bar' : 'Havuz Barı' %></div>
+          <h2 style="color: var(--white);" class="reveal reveal-delay-1"><%= lang === 'en' ? 'Refreshments by the Water' : 'Su Kenarında İkramlar' %></h2>
+          <p style="color: rgba(255,255,255,0.7);" class="reveal reveal-delay-2"><%= lang === 'en' ? 'Our poolside bar serves artisan cocktails, fresh smoothies, light Mediterranean bites, and chilled rosé throughout the day. Enjoy the perfect poolside indulgence without leaving your lounger.' : 'Havuz kenarı barımız, gün boyu zanaatkar kokteyller, taze smoothie\'ler, hafif Akdeniz atıştırmalıkları ve soğuk rosé şarap servis eder. Şezlongunuzdan ayrılmadan mükemmel havuz kenarı keyfini yaşayın.' %></p>
+          <div style="margin-top: 24px;" class="reveal reveal-delay-3">
+            <p style="color: var(--gold); font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;"><%= lang === 'en' ? 'Highlights' : 'Öne Çıkanlar' %></p>
+            <p style="color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 2;"><%= lang === 'en' ? '✦ Signature Mojito  ·  ✦ Fresh Coconut Water  ·  ✦ Mezze Platter  ·  ✦ Gelato Selection' : '✦ İmza Mojito  ·  ✦ Taze Hindistan Cevizi Suyu  ·  ✦ Meze Tabağı  ·  ✦ Dondurma Seçkisi' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPENING HOURS -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Information' : 'Bilgi' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Pool Hours & Details' : 'Havuz Saatleri ve Detaylar' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div style="max-width: 700px; margin: 0 auto;">
+        <div class="values-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="value-card reveal">
+            <div class="value-card-icon">🕐</div>
+            <h3><%= lang === 'en' ? 'Pool Hours' : 'Havuz Saatleri' %></h3>
+            <p><%= lang === 'en' ? 'Open daily from 08:00 to 20:00<br>Lifeguard on duty at all times' : 'Her gün 08:00 - 20:00 arası açık<br>Her zaman cankurtaran görev başında' %></p>
+          </div>
+          <div class="value-card reveal reveal-delay-1">
+            <div class="value-card-icon">🍸</div>
+            <h3><%= lang === 'en' ? 'Bar Hours' : 'Bar Saatleri' %></h3>
+            <p><%= lang === 'en' ? 'Pool Bar: 10:00 - 19:00<br>Food service: 11:00 - 18:00' : 'Havuz Barı: 10:00 - 19:00<br>Yemek servisi: 11:00 - 18:00' %></p>
+          </div>
+          <div class="value-card reveal reveal-delay-2">
+            <div class="value-card-icon">📐</div>
+            <h3><%= lang === 'en' ? 'Dimensions' : 'Ölçüler' %></h3>
+            <p><%= lang === 'en' ? '25m x 10m infinity pool<br>Depth: 1.2m - 2.0m' : '25m x 10m sonsuzluk havuzu<br>Derinlik: 1.2m - 2.0m' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Gallery' : 'Galeri' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Pool Moments' : 'Havuz Anları' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="gallery-grid-item" data-lightbox data-src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Sonsuzluk Havuzu" loading="lazy">
+          <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+        </div>
+        <div class="gallery-grid-item" data-lightbox data-src="https://images.unsplash.com/photo-1572331165267-854da2b021b1?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1572331165267-854da2b021b1?w=600&q=80" alt="Havuz Alanı" loading="lazy">
+          <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+        </div>
+        <div class="gallery-grid-item" data-lightbox data-src="https://images.unsplash.com/photo-1572451479094-7a4bfc4e1d25?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1572451479094-7a4bfc4e1d25?w=600&q=80" alt="Pool Bar" loading="lazy">
+          <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+        </div>
+        <div class="gallery-grid-item" data-lightbox data-src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=1200&q=80">
+          <img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&q=80" alt="Havuz Gecesi" loading="lazy">
+          <div class="gallery-overlay"><span class="gallery-overlay-icon">⤢</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1920&q=80');">
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content reveal">
+      <h2><%= lang === 'en' ? 'Dive Into Paradise' : 'Cennete Dalın' %></h2>
+      <p><%= lang === 'en' ? 'Book your stay and enjoy our stunning infinity pool.' : 'Konaklamanızı rezerve edin ve etkileyici sonsuzluk havuzumuzun keyfini çıkarın.' %></p>
+      <a href="/rezervasyon<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn hero-btn-gold"><%= lang === 'en' ? 'Book Now' : 'Rezervasyon Yap' %></a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

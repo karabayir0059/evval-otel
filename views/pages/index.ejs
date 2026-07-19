@@ -1,0 +1,321 @@
+<%- include('../partials/head', { lang, content, page: 'home' }) %>
+<%- include('../partials/navbar', { lang, page: 'home' }) %>
+
+<main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80" alt="Evval Otel" class="hero-bg">
+        <div class="hero-content">
+            <p class="hero-subtitle"><%= content.hero_subtitle || (lang === 'en' ? 'Welcome' : 'Hoş Geldiniz') %></p>
+            <h1 class="hero-title"><%- content.hero_title || 'Evval <span>Otel</span>' %></h1>
+            <div class="hero-line"></div>
+            <p class="hero-desc"><%= content.hero_desc || (lang === 'en' ? 'An unforgettable boutique hotel experience in the heart of nature, in the embrace of peace.' : 'Doğanın kalbinde, huzurun kucağında unutulmaz bir butik otel deneyimi.') %></p>
+            <a href="/rezervasyon<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn"><%= content.hero_btn || (lang === 'en' ? 'Book Now' : 'Rezervasyon Yap') %></a>
+        </div>
+        <div class="hero-scroll">
+            <span class="hero-scroll-text"><%= lang === 'en' ? 'Explore' : 'Keşfet' %></span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ========== WELCOME ========== -->
+    <section class="section section-cream">
+        <div class="container">
+            <div class="welcome-grid">
+                <div class="welcome-image reveal">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80" alt="<%= lang === 'en' ? 'Evval Hotel Lobby' : 'Evval Otel Lobisi' %>">
+                </div>
+                <div class="welcome-text reveal reveal-delay-2">
+                    <p class="section-tag"><%= content.welcome_tag || (lang === 'en' ? 'About Us' : 'Hakkımızda') %></p>
+                    <h2><%= content.welcome_title || (lang === 'en' ? 'Where Peace and Elegance Meet' : 'Huzurun ve Zarafetin Buluştuğu Nokta') %></h2>
+                    <p><%= content.welcome_p1 || (lang === 'en' ? 'Evval Hotel offers a boutique hotel experience carefully thought out in every detail, surrounded by the unique beauties of nature. In this special place where silence and peace reign, you will enjoy a timeless luxury.' : 'Evval Otel, doğanın eşsiz güzellikleriyle çevrili, her detayı özenle düşünülmüş bir butik otel deneyimi sunar. Sessizliğin ve huzurun hüküm sürdüğü bu özel mekanda, zamansız bir lüksün tadını çıkaracaksınız.') %></p>
+                    <p><%= content.welcome_p2 || (lang === 'en' ? 'With our rooms where traditional architecture meets modern design, our chef\'s carefully prepared flavors, and our rejuvenating spa experience, we are waiting for you.' : 'Geleneksel mimari ile modern tasarımın buluştuğu odalarımız, şefimizin özenle hazırladığı lezzetler ve yenileyici spa deneyimimizle sizi bekliyoruz.') %></p>
+                    <a href="/hakkimizda<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn"><%= lang === 'en' ? 'Discover More' : 'Daha Fazla Keşfet' %></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ROOMS ========== -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><%= lang === 'en' ? 'Accommodation' : 'Konaklama' %></p>
+                <h2 class="section-title"><%= lang === 'en' ? 'Our Rooms' : 'Odalarımız' %></h2>
+                <div class="section-line"></div>
+                <p class="section-desc"><%= lang === 'en' ? 'Enjoy comfort and elegance in our carefully designed rooms.' : 'Her biri özenle tasarlanmış odalarımızda konforun ve zarafetin tadını çıkarın.' %></p>
+            </div>
+            <div class="rooms-grid">
+                <% if (typeof rooms !== 'undefined' && rooms.length > 0) { %>
+                    <% rooms.slice(0, 3).forEach(function(room, index) { %>
+                        <div class="room-card reveal reveal-delay-<%= index + 1 %>">
+                            <div class="room-card-image">
+                                <img src="<%= room.image %>" alt="<%= lang === 'en' ? room.en.title : room.tr.title %>">
+                                <% if (room.badge) { %>
+                                    <span class="room-card-badge"><%= room.badge %></span>
+                                <% } %>
+                            </div>
+                            <div class="room-card-body">
+                                <p class="room-card-category"><%= lang === 'en' ? (room.en.category_name || room.category) : (room.tr.category_name || room.category) %></p>
+                                <h3 class="room-card-title"><%= lang === 'en' ? room.en.title : room.tr.title %></h3>
+                                <p class="room-card-desc"><%= lang === 'en' ? room.en.description : room.tr.description %></p>
+                                <div class="room-card-footer">
+                                    <span class="room-card-price">₺<%= room.price.toLocaleString('tr-TR') %> <span>/ <%= lang === 'en' ? 'night' : 'gece' %></span></span>
+                                    <a href="/odalar/<%= room.id %><%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'View' : 'İncele' %></a>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <!-- Fallback rooms if no dynamic data -->
+                    <div class="room-card reveal reveal-delay-1">
+                        <div class="room-card-image">
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80" alt="<%= lang === 'en' ? 'Standard Room' : 'Standart Oda' %>">
+                            <span class="room-card-badge">★ <%= lang === 'en' ? 'Popular' : 'Popüler' %></span>
+                        </div>
+                        <div class="room-card-body">
+                            <p class="room-card-category"><%= lang === 'en' ? 'Standard' : 'Standart' %></p>
+                            <h3 class="room-card-title"><%= lang === 'en' ? 'Classic Room' : 'Klasik Oda' %></h3>
+                            <p class="room-card-desc"><%= lang === 'en' ? 'A comfortable accommodation experience with a warm and inviting atmosphere.' : 'Sıcak ve davetkar atmosferiyle konforlu bir konaklama deneyimi.' %></p>
+                            <div class="room-card-footer">
+                                <span class="room-card-price">₺2.500 <span>/ <%= lang === 'en' ? 'night' : 'gece' %></span></span>
+                                <a href="/odalar<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'View' : 'İncele' %></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="room-card reveal reveal-delay-2">
+                        <div class="room-card-image">
+                            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80" alt="<%= lang === 'en' ? 'Suite Room' : 'Suit Oda' %>">
+                            <span class="room-card-badge">★ <%= lang === 'en' ? 'Most Preferred' : 'En Çok Tercih' %></span>
+                        </div>
+                        <div class="room-card-body">
+                            <p class="room-card-category"><%= lang === 'en' ? 'Suite' : 'Suit' %></p>
+                            <h3 class="room-card-title"><%= lang === 'en' ? 'Executive Suite' : 'Executive Suit' %></h3>
+                            <p class="room-card-desc"><%= lang === 'en' ? 'Premium comfort with spacious living area and private balcony.' : 'Geniş yaşam alanı ve özel balkonuyla premium konfor.' %></p>
+                            <div class="room-card-footer">
+                                <span class="room-card-price">₺4.500 <span>/ <%= lang === 'en' ? 'night' : 'gece' %></span></span>
+                                <a href="/odalar<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'View' : 'İncele' %></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="room-card reveal reveal-delay-3">
+                        <div class="room-card-image">
+                            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="<%= lang === 'en' ? 'Family Room' : 'Aile Odası' %>">
+                            <span class="room-card-badge">★ Premium</span>
+                        </div>
+                        <div class="room-card-body">
+                            <p class="room-card-category"><%= lang === 'en' ? 'Family' : 'Aile' %></p>
+                            <h3 class="room-card-title"><%= lang === 'en' ? 'Family Suite' : 'Aile Suiti' %></h3>
+                            <p class="room-card-desc"><%= lang === 'en' ? 'A spacious suite specially designed for an unforgettable holiday with your family.' : 'Ailenizle unutulmaz bir tatil için özel olarak tasarlanmış geniş suit.' %></p>
+                            <div class="room-card-footer">
+                                <span class="room-card-price">₺5.500 <span>/ <%= lang === 'en' ? 'night' : 'gece' %></span></span>
+                                <a href="/odalar<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'View' : 'İncele' %></a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PARALLAX - RESTAURANT ========== -->
+    <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80');">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content reveal">
+            <p class="section-tag" style="color: var(--gold-light);"><%= lang === 'en' ? 'Restaurant' : 'Restoran' %></p>
+            <h2><%= lang === 'en' ? 'Chef\'s Special Flavors' : 'Şefin Özel Lezzetleri' %></h2>
+            <p><%= lang === 'en' ? 'Unique flavors prepared with local and seasonal ingredients, on your table with our chef\'s meticulous touches.' : 'Yerel ve mevsimsel malzemelerle hazırlanan eşsiz lezzetler, şefimizin özenli dokunuşlarıyla sofranızda.' %></p>
+            <a href="/restoran<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn"><%= lang === 'en' ? 'Explore the Menu' : 'Menüyü Keşfet' %></a>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section class="section" style="background: var(--brown-dark);">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><%= lang === 'en' ? 'Our Services' : 'Hizmetlerimiz' %></p>
+                <h2 class="section-title section-title-light"><%= lang === 'en' ? 'Premium Services' : 'Premium Hizmetler' %></h2>
+                <div class="section-line"></div>
+                <p class="section-desc"><%= lang === 'en' ? 'Feel privileged with our thoughtful services for your comfort.' : 'Konforunuz için sunduğumuz özenli hizmetlerle kendinizi ayrıcalıklı hissedin.' %></p>
+            </div>
+            <div class="services-glass-grid">
+                <div class="glass-card reveal reveal-delay-1">
+                    <div class="glass-card-icon">✦</div>
+                    <h3>Spa & Wellness</h3>
+                    <p><%= lang === 'en' ? 'Renew your body and soul with traditional and modern therapies.' : 'Geleneksel ve modern terapilerle bedeninizi ve ruhunuzu yenileyin.' %></p>
+                </div>
+                <div class="glass-card reveal reveal-delay-2">
+                    <div class="glass-card-icon">✦</div>
+                    <h3><%= lang === 'en' ? 'Private Chef Menu' : 'Özel Şef Menüsü' %></h3>
+                    <p><%= lang === 'en' ? 'A fine dining experience prepared with seasonal ingredients.' : 'Mevsimsel malzemelerle hazırlanan fine dining deneyimi.' %></p>
+                </div>
+                <div class="glass-card reveal reveal-delay-3">
+                    <div class="glass-card-icon">✦</div>
+                    <h3><%= lang === 'en' ? 'Infinity Pool' : 'Sonsuzluk Havuzu' %></h3>
+                    <p><%= lang === 'en' ? 'Enjoy the peace in our infinity pool with nature views.' : 'Doğa manzaralı sonsuzluk havuzumuzda huzurun tadını çıkarın.' %></p>
+                </div>
+                <div class="glass-card reveal reveal-delay-1">
+                    <div class="glass-card-icon">✦</div>
+                    <h3><%= lang === 'en' ? 'Transfer Service' : 'Transfer Hizmeti' %></h3>
+                    <p><%= lang === 'en' ? 'VIP transfer comfort from the airport to our hotel.' : 'Havalimanından otelimize kadar VIP transfer konforu.' %></p>
+                </div>
+                <div class="glass-card reveal reveal-delay-2">
+                    <div class="glass-card-icon">✦</div>
+                    <h3><%= lang === 'en' ? 'Private Tours' : 'Özel Turlar' %></h3>
+                    <p><%= lang === 'en' ? 'Discover the unique beauties of the region with a guide.' : 'Bölgenin eşsiz güzelliklerini rehber eşliğinde keşfedin.' %></p>
+                </div>
+                <div class="glass-card reveal reveal-delay-3">
+                    <div class="glass-card-icon">✦</div>
+                    <h3><%= lang === 'en' ? '24/7 Room Service' : '7/24 Oda Servisi' %></h3>
+                    <p><%= lang === 'en' ? 'Carefully prepared delicacies in your room whenever you want.' : 'Ne zaman isterseniz, özenle hazırlanmış lezzetler odanızda.' %></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <section class="section" style="background: #1A0E0A; padding: 80px 0;">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="reveal">
+                    <div class="stat-number" data-count="12">0</div>
+                    <p class="stat-label"><%= lang === 'en' ? 'Years of Experience' : 'Yıllık Deneyim' %></p>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <div class="stat-number" data-count="28">0</div>
+                    <p class="stat-label"><%= lang === 'en' ? 'Unique Rooms' : 'Özel Oda' %></p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="stat-number" data-count="15">0</div>
+                    <p class="stat-label"><%= lang === 'en' ? 'Awards' : 'Ödül' %></p>
+                </div>
+                <div class="reveal reveal-delay-3">
+                    <div class="stat-number" data-count="5000">0</div>
+                    <p class="stat-label"><%= lang === 'en' ? 'Happy Guests' : 'Mutlu Misafir' %></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><%= lang === 'en' ? 'Reviews' : 'Yorumlar' %></p>
+                <h2 class="section-title section-title-light"><%= lang === 'en' ? 'What Our Guests Say?' : 'Misafirlerimiz Ne Diyor?' %></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="testimonial-carousel reveal">
+                <% if (typeof reviews !== 'undefined' && reviews.length > 0) { %>
+                    <% reviews.forEach(function(review, index) { %>
+                        <div class="testimonial-slide <%= index === 0 ? 'active' : '' %>">
+                            <div class="testimonial-stars">
+                                <% for (let i = 0; i < 5; i++) { %><%= i < review.rating ? '★' : '☆' %><% } %>
+                            </div>
+                            <p class="testimonial-text">"<%= lang === 'en' ? review.en_text || review.text : review.tr_text || review.text %>"</p>
+                            <p class="testimonial-author"><%= review.author %> <span><%= review.location ? '• ' + review.location : '' %></span></p>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <!-- Fallback testimonials if no dynamic data -->
+                    <div class="testimonial-slide active">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"<%= lang === 'en' ? 'The most beautiful hotel I\'ve ever stayed in. Every detail is thought out, the staff is incredibly attentive. The infinity pool and spa experience were unforgettable.' : 'Hayatımda kaldığım en güzel otel. Her detay düşünülmüş, personel inanılmaz ilgili. Sonsuzluk havuzu ve spa deneyimi unutulmazdı.' %>"</p>
+                        <p class="testimonial-author">Ayşe Yılmaz <span>• İstanbul</span></p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"<%= lang === 'en' ? 'A unique peace and luxury experience. The flavors in the restaurant and the chef\'s presentation were perfect. We will definitely come again.' : 'Eşsiz bir huzur ve lüks deneyimi. Restorandaki lezzetler ve şefin sunumu mükemmeldi. Kesinlikle tekrar geleceğiz.' %>"</p>
+                        <p class="testimonial-author">Mehmet Demir <span>• Ankara</span></p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"<%= lang === 'en' ? 'A paradise in the heart of silence and nature. The room design, the view and the attentive team made everything flawless.' : 'Sessizliğin ve doğanın kalbinde bir cennet. Odaların tasarımı, manzarası ve ilgili ekip her şeyi kusursuz kıldı.' %>"</p>
+                        <p class="testimonial-author">Sarah Johnson <span>• London</span></p>
+                    </div>
+                <% } %>
+            </div>
+            <div class="testimonial-dots">
+                <% 
+                    var slideCount = (typeof reviews !== 'undefined' && reviews.length > 0) ? reviews.length : 3;
+                    for (var i = 0; i < slideCount; i++) { 
+                %>
+                    <button class="testimonial-dot <%= i === 0 ? 'active' : '' %>" data-index="<%= i %>"></button>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag"><%= lang === 'en' ? 'Gallery' : 'Galeri' %></p>
+                <h2 class="section-title"><%= lang === 'en' ? 'Moments from Our Hotel' : 'Otelimizden Kareler' %></h2>
+                <div class="section-line"></div>
+            </div>
+        </div>
+        <div class="gallery-grid reveal">
+            <% if (typeof gallery !== 'undefined' && gallery.length > 0) { %>
+                <% gallery.slice(0, 5).forEach(function(item, index) { %>
+                    <div class="gallery-grid-item">
+                        <img src="<%= item.image || item.url %>" alt="<%= item.title || (lang === 'en' ? 'Gallery Image' : 'Galeri Görseli') %>">
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-icon">⊕</span>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <!-- Fallback gallery if no dynamic data -->
+                <div class="gallery-grid-item">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="<%= lang === 'en' ? 'Hotel exterior' : 'Otel dış görünüş' %>">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-grid-item">
+                    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="<%= lang === 'en' ? 'Spa' : 'Spa' %>">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-grid-item">
+                    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="<%= lang === 'en' ? 'Pool' : 'Havuz' %>">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-grid-item">
+                    <img src="https://images.unsplash.com/photo-1551918120-9739cb430c6d?w=600&q=80" alt="<%= lang === 'en' ? 'Restaurant' : 'Restoran' %>">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-icon">⊕</span>
+                    </div>
+                </div>
+                <div class="gallery-grid-item">
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80" alt="<%= lang === 'en' ? 'Room' : 'Oda' %>">
+                    <div class="gallery-overlay">
+                        <span class="gallery-overlay-icon">⊕</span>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        <div style="text-align: center; margin-top: 40px;" class="reveal">
+            <a href="/galeri<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn" style="color: var(--brown-dark); border-color: var(--gold); display: inline-flex;"><%= lang === 'en' ? 'View Full Gallery' : 'Tüm Galeriyi Gör' %></a>
+        </div>
+    </section>
+
+    <!-- ========== GOOGLE MAPS ========== -->
+    <section class="section" style="padding: 0;">
+        <iframe class="contact-map"
+            src="<%= typeof settings !== 'undefined' && settings.map_embed_url ? settings.map_embed_url : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000.0!2d28.0!3d41.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDAwJzAwLjAiTiAyOMKwMDAnMDAuMCJF!5e0!3m2!1str!2str!4v1' %>"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+
+</main>
+
+<%- include('../partials/footer', { lang, settings }) %>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sayfalar - Evval Hotel Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-logo">Evval<span>.</span></div>
+      <nav class="admin-sidebar-nav">
+        <a href="/admin/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">📊 Dashboard</a>
+        <a href="/admin/pages" class="<%= page === 'pages' ? 'active' : '' %>">📝 Sayfalar</a>
+        <a href="/admin/rooms" class="<%= page === 'rooms' ? 'active' : '' %>">🛏 Odalar</a>
+        <a href="/admin/menu" class="<%= page === 'menu' ? 'active' : '' %>">🍽 Menü</a>
+        <a href="/admin/gallery" class="<%= page === 'gallery' ? 'active' : '' %>">🖼 Galeri</a>
+        <a href="/admin/reviews" class="<%= page === 'reviews' ? 'active' : '' %>">⭐ Yorumlar</a>
+        <a href="/admin/reservations" class="<%= page === 'reservations' ? 'active' : '' %>">📋 Rezervasyonlar</a>
+        <a href="/admin/settings" class="<%= page === 'settings' ? 'active' : '' %>">⚙ Ayarlar</a>
+      </nav>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-header">
+        <h1>Sayfalar</h1>
+        <button id="logoutBtn" class="admin-btn">Çıkış</button>
+      </div>
+
+      <!-- HOME PAGE -->
+      <div class="admin-section">
+        <h2>Ana Sayfa (Home)</h2>
+        <form data-content-form="/api/content/home">
+          <div class="form-group">
+            <label>Başlık (TR)</label>
+            <input type="text" name="heroTitleTr" value="<%= content.home && content.home.heroTitleTr ? content.home.heroTitleTr : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Başlık (EN)</label>
+            <input type="text" name="heroTitleEn" value="<%= content.home && content.home.heroTitleEn ? content.home.heroTitleEn : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Alt Başlık (TR)</label>
+            <input type="text" name="heroSubtitleTr" value="<%= content.home && content.home.heroSubtitleTr ? content.home.heroSubtitleTr : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Alt Başlık (EN)</label>
+            <input type="text" name="heroSubtitleEn" value="<%= content.home && content.home.heroSubtitleEn ? content.home.heroSubtitleEn : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Açıklama (TR)</label>
+            <textarea name="heroDescTr" rows="3"><%= content.home && content.home.heroDescTr ? content.home.heroDescTr : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Açıklama (EN)</label>
+            <textarea name="heroDescEn" rows="3"><%= content.home && content.home.heroDescEn ? content.home.heroDescEn : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Hakkımızda Başlık (TR)</label>
+            <input type="text" name="aboutTitleTr" value="<%= content.home && content.home.aboutTitleTr ? content.home.aboutTitleTr : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Hakkımızda Başlık (EN)</label>
+            <input type="text" name="aboutTitleEn" value="<%= content.home && content.home.aboutTitleEn ? content.home.aboutTitleEn : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Hakkımızda Metin (TR)</label>
+            <textarea name="aboutTextTr" rows="4"><%= content.home && content.home.aboutTextTr ? content.home.aboutTextTr : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Hakkımızda Metin (EN)</label>
+            <textarea name="aboutTextEn" rows="4"><%= content.home && content.home.aboutTextEn ? content.home.aboutTextEn : '' %></textarea>
+          </div>
+          <button type="submit" class="admin-btn admin-btn-primary">Ana Sayfayı Kaydet</button>
+        </form>
+      </div>
+
+      <hr style="margin:32px 0;">
+
+      <!-- ABOUT PAGE -->
+      <div class="admin-section">
+        <h2>Hakkımızda (About)</h2>
+        <form data-content-form="/api/content/about">
+          <div class="form-group">
+            <label>Sayfa Başlığı (TR)</label>
+            <input type="text" name="pageTitleTr" value="<%= content.about && content.about.pageTitleTr ? content.about.pageTitleTr : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Sayfa Başlığı (EN)</label>
+            <input type="text" name="pageTitleEn" value="<%= content.about && content.about.pageTitleEn ? content.about.pageTitleEn : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Alt Başlık (TR)</label>
+            <input type="text" name="subtitleTr" value="<%= content.about && content.about.subtitleTr ? content.about.subtitleTr : '' %>">
+          </div>
+          <div class="form-group">
+            <label>Alt Başlık (EN)</label>
+            <input type="text" name="subtitleEn" value="<%= content.about && content.about.subtitleEn ? content.about.subtitleEn : '' %>">
+          </div>
+          <div class="form-group">
+            <label>İçerik (TR)</label>
+            <textarea name="contentTr" rows="6"><%= content.about && content.about.contentTr ? content.about.contentTr : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>İçerik (EN)</label>
+            <textarea name="contentEn" rows="6"><%= content.about && content.about.contentEn ? content.about.contentEn : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Misyon (TR)</label>
+            <textarea name="missionTr" rows="3"><%= content.about && content.about.missionTr ? content.about.missionTr : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Misyon (EN)</label>
+            <textarea name="missionEn" rows="3"><%= content.about && content.about.missionEn ? content.about.missionEn : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Vizyon (TR)</label>
+            <textarea name="visionTr" rows="3"><%= content.about && content.about.visionTr ? content.about.visionTr : '' %></textarea>
+          </div>
+          <div class="form-group">
+            <label>Vizyon (EN)</label>
+            <textarea name="visionEn" rows="3"><%= content.about && content.about.visionEn ? content.about.visionEn : '' %></textarea>
+          </div>
+          <button type="submit" class="admin-btn admin-btn-primary">Hakkımızda Kaydet</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

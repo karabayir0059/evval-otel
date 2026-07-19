@@ -1,0 +1,121 @@
+<%- include('../partials/head', { lang, content: {}, page: 'rooms' }) %>
+<%- include('../partials/navbar', { lang, page: 'rooms' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1920&q=80" alt="Evval Otel Odalar" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Our Rooms' : 'Odalarımız' %></h1>
+      <p><%= lang === 'en' ? 'Elegance and comfort in every detail' : 'Her detayda zarafet ve konfor' %></p>
+    </div>
+  </section>
+
+  <!-- ROOMS GRID -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Accommodation' : 'Konaklama' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'A Room for Every Dream' : 'Her Rüyaya Bir Oda' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+        <p class="section-desc reveal reveal-delay-3"><%= lang === 'en' ? 'Each room is thoughtfully designed to provide the ultimate in comfort and style.' : 'Her oda, konfor ve stilin zirvesini sunacak şekilde özenle tasarlanmıştır.' %></p>
+      </div>
+      <div class="rooms-grid">
+        <% if (rooms && rooms.length) { %>
+          <% rooms.forEach(function(room, index) { %>
+            <% var roomData = lang === 'en' ? room.en : room.tr; %>
+            <div class="room-card reveal<%= index % 3 === 1 ? ' reveal-delay-1' : (index % 3 === 2 ? ' reveal-delay-2' : '') %>">
+              <div class="room-card-image">
+                <img src="<%= room.image || 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80' %>" alt="<%= roomData.name %>" loading="lazy">
+                <% if (room.badge) { %>
+                  <div class="room-card-badge"><%= room.badge %></div>
+                <% } %>
+              </div>
+              <div class="room-card-body">
+                <div class="room-card-category"><%= roomData.category || (lang === 'en' ? 'Premium Room' : 'Premium Oda') %></div>
+                <h3 class="room-card-title"><%= roomData.name %></h3>
+                <p class="room-card-desc"><%= roomData.description %></p>
+                <% if (roomData.features && roomData.features.length) { %>
+                  <div class="room-features">
+                    <% roomData.features.forEach(function(feature) { %>
+                      <span class="room-feature"><%= feature %></span>
+                    <% }); %>
+                  </div>
+                <% } %>
+                <div class="room-card-footer">
+                  <div class="room-card-price">
+                    ₺<%= room.price ? room.price.toLocaleString('tr-TR') : '---' %>
+                    <span>/<%= lang === 'en' ? 'night' : 'gece' %></span>
+                  </div>
+                  <a href="/rezervasyon<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta">
+                    <%= lang === 'en' ? 'Book Now' : 'Rezervasyon Yap' %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+            <p style="font-size: 1.1rem; color: var(--text-light);"><%= lang === 'en' ? 'Room information is being updated. Please check back soon.' : 'Oda bilgileri güncellenmektedir. Lütfen daha sonra tekrar kontrol edin.' %></p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Room Amenities' : 'Oda Olanakları' %></div>
+        <h2 class="section-title section-title-light reveal reveal-delay-1"><%= lang === 'en' ? 'Included in Every Room' : 'Her Odada Bulunan' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="services-glass-grid">
+        <div class="glass-card reveal">
+          <div class="glass-card-icon">🛏</div>
+          <h3><%= lang === 'en' ? 'Premium Bedding' : 'Premium Yatak Takımı' %></h3>
+          <p><%= lang === 'en' ? 'Egyptian cotton linens, hypoallergenic pillows, and king-size beds for the ultimate sleep experience.' : 'Mısır pamuğu çarşaflar, alerji yapmayan yastıklar ve king-size yataklarla mükemmel uyku deneyimi.' %></p>
+        </div>
+        <div class="glass-card reveal reveal-delay-1">
+          <div class="glass-card-icon">🚿</div>
+          <h3><%= lang === 'en' ? 'Luxury Bathroom' : 'Lüks Banyo' %></h3>
+          <p><%= lang === 'en' ? 'Rainfall shower, premium bath amenities, heated floors, and plush bathrobes.' : 'Yağmur duşu, premium banyo ürünleri, yerden ısıtma ve peluş bornozlar.' %></p>
+        </div>
+        <div class="glass-card reveal reveal-delay-2">
+          <div class="glass-card-icon">📺</div>
+          <h3><%= lang === 'en' ? 'Entertainment' : 'Eğlence' %></h3>
+          <p><%= lang === 'en' ? '55-inch Smart TV, Bluetooth speaker, high-speed Wi-Fi, and streaming services.' : '55 inç Smart TV, Bluetooth hoparlör, yüksek hızlı Wi-Fi ve streaming hizmetleri.' %></p>
+        </div>
+        <div class="glass-card reveal reveal-delay-3">
+          <div class="glass-card-icon">☕</div>
+          <h3><%= lang === 'en' ? 'Refreshments' : 'İkramlar' %></h3>
+          <p><%= lang === 'en' ? 'Nespresso machine, premium tea selection, minibar with local artisan products.' : 'Nespresso makinesi, premium çay seçkisi, yerel zanaatkar ürünleriyle minibar.' %></p>
+        </div>
+        <div class="glass-card reveal">
+          <div class="glass-card-icon">❄</div>
+          <h3><%= lang === 'en' ? 'Climate Control' : 'İklim Kontrolü' %></h3>
+          <p><%= lang === 'en' ? 'Individual climate control, blackout curtains, and soundproof windows.' : 'Bireysel iklim kontrolü, karartma perdeleri ve ses yalıtımlı pencereler.' %></p>
+        </div>
+        <div class="glass-card reveal reveal-delay-1">
+          <div class="glass-card-icon">🔒</div>
+          <h3><%= lang === 'en' ? 'Safety & Security' : 'Güvenlik' %></h3>
+          <p><%= lang === 'en' ? 'Electronic safe, 24/7 security, key card access, and in-room safe.' : 'Elektronik kasa, 7/24 güvenlik, anahtar kart erişimi ve oda kasası.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920&q=80');">
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content reveal">
+      <h2><%= lang === 'en' ? 'Find Your Perfect Room' : 'Mükemmel Odanızı Bulun' %></h2>
+      <p><%= lang === 'en' ? 'Book directly for the best rates and exclusive benefits.' : 'En iyi fiyatlar ve özel avantajlar için doğrudan rezervasyon yapın.' %></p>
+      <a href="/rezervasyon<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn hero-btn-gold"><%= lang === 'en' ? 'Book Now' : 'Rezervasyon Yap' %></a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

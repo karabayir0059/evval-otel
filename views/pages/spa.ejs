@@ -1,0 +1,205 @@
+<%- include('../partials/head', { lang, content: {}, page: 'spa' }) %>
+<%- include('../partials/navbar', { lang, page: 'spa' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=1920&q=80" alt="Evval Otel Spa" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1>Spa & Wellness</h1>
+      <p><%= lang === 'en' ? 'Restore your body, mind and soul' : 'Bedeninizi, zihninizi ve ruhunuzu yenileyin' %></p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="welcome-grid">
+        <div class="welcome-image reveal">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" alt="Evval Spa Deneyimi" loading="lazy">
+        </div>
+        <div class="welcome-text">
+          <div class="section-tag reveal"><%= lang === 'en' ? 'Wellness Sanctuary' : 'Wellness Sığınağı' %></div>
+          <h2 class="reveal reveal-delay-1"><%= lang === 'en' ? 'A Journey of Renewal' : 'Yenilenme Yolculuğu' %></h2>
+          <p class="reveal reveal-delay-2"><%= lang === 'en' ? 'Our spa is a sanctuary of calm where ancient Turkish bathing traditions meet modern wellness therapies. Every treatment is designed to restore balance and harmony.' : 'Spamız, eski Türk banyo geleneklerinin modern wellness terapileriyle buluştuğu bir huzur sığınağıdır. Her tedavi, denge ve uyumu geri kazandırmak için tasarlanmıştır.' %></p>
+          <p class="reveal reveal-delay-3"><%= lang === 'en' ? 'Featuring a traditional hammam, sauna, steam room, indoor heated pool, and six private treatment rooms, our spa offers a complete wellness journey.' : 'Geleneksel hamam, sauna, buhar odası, kapalı ısıtmalı havuz ve altı özel tedavi odası ile spamız eksiksiz bir wellness yolculuğu sunuyor.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TREATMENTS -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Our Treatments' : 'Tedavilerimiz' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Signature Treatments' : 'İmza Tedaviler' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="rooms-grid">
+        <div class="room-card reveal">
+          <div class="room-card-image">
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80" alt="Kese & Köpük" loading="lazy">
+          </div>
+          <div class="room-card-body">
+            <div class="room-card-category"><%= lang === 'en' ? 'Traditional' : 'Geleneksel' %></div>
+            <h3 class="room-card-title"><%= lang === 'en' ? 'Ottoman Kese & Foam' : 'Osmanlı Kese & Köpük' %></h3>
+            <p class="room-card-desc"><%= lang === 'en' ? 'A centuries-old ritual of deep cleansing with a traditional kese glove, followed by a luxurious foam massage on the heated marble stone.' : 'Geleneksel kese eldiveniyle derinlemesine temizliğin asırlık ritüeli, ardından ısıtılmış mermer taşında lüks köpük masajı.' %></p>
+            <div class="room-card-footer">
+              <div class="room-card-price">₺1.200 <span>/ 90 <%= lang === 'en' ? 'min' : 'dk' %></span></div>
+              <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'Book' : 'Rezervasyon' %></a>
+            </div>
+          </div>
+        </div>
+        <div class="room-card reveal reveal-delay-1">
+          <div class="room-card-image">
+            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80" alt="Aromaterapi Masajı" loading="lazy">
+          </div>
+          <div class="room-card-body">
+            <div class="room-card-category"><%= lang === 'en' ? 'Massage' : 'Masaj' %></div>
+            <h3 class="room-card-title"><%= lang === 'en' ? 'Aromatherapy Massage' : 'Aromaterapi Masajı' %></h3>
+            <p class="room-card-desc"><%= lang === 'en' ? 'A full-body massage using essential oils blended specifically for your needs, promoting deep relaxation and stress relief.' : 'İhtiyaçlarınıza özel karıştırılmış uçucu yağlarla yapılan tüm vücut masajı, derin rahatlama ve stres giderme sağlar.' %></p>
+            <div class="room-card-footer">
+              <div class="room-card-price">₺1.800 <span>/ 75 <%= lang === 'en' ? 'min' : 'dk' %></span></div>
+              <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'Book' : 'Rezervasyon' %></a>
+            </div>
+          </div>
+        </div>
+        <div class="room-card reveal reveal-delay-2">
+          <div class="room-card-image">
+            <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=600&q=80" alt="Hot Stone" loading="lazy">
+          </div>
+          <div class="room-card-body">
+            <div class="room-card-category"><%= lang === 'en' ? 'Premium' : 'Premium' %></div>
+            <h3 class="room-card-title"><%= lang === 'en' ? 'Hot Stone Therapy' : 'Sıcak Taş Terapisi' %></h3>
+            <p class="room-card-desc"><%= lang === 'en' ? 'Heated volcanic basalt stones placed on key energy points combined with deep tissue massage to release tension and restore vitality.' : 'Enerji noktalarına yerleştirilen ısıtılmış volkanik bazalt taşlar, derin doku masajıyla birleşerek gerginliği giderir ve canlılığı geri kazandırır.' %></p>
+            <div class="room-card-footer">
+              <div class="room-card-price">₺2.200 <span>/ 90 <%= lang === 'en' ? 'min' : 'dk' %></span></div>
+              <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'Book' : 'Rezervasyon' %></a>
+            </div>
+          </div>
+        </div>
+        <div class="room-card reveal">
+          <div class="room-card-image">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Cilt Bakımı" loading="lazy">
+          </div>
+          <div class="room-card-body">
+            <div class="room-card-category"><%= lang === 'en' ? 'Facial' : 'Cilt Bakımı' %></div>
+            <h3 class="room-card-title"><%= lang === 'en' ? 'Luxury Gold Facial' : 'Lüks Altın Yüz Bakımı' %></h3>
+            <p class="room-card-desc"><%= lang === 'en' ? 'An anti-aging facial treatment using 24K gold-infused products to brighten, firm, and rejuvenate the skin for a radiant glow.' : 'Parlak bir cilt için 24K altın içerikli ürünlerle yapılan anti-aging yüz bakımı, cildi aydınlatır, sıkılaştırır ve gençleştirir.' %></p>
+            <div class="room-card-footer">
+              <div class="room-card-price">₺2.500 <span>/ 60 <%= lang === 'en' ? 'min' : 'dk' %></span></div>
+              <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'Book' : 'Rezervasyon' %></a>
+            </div>
+          </div>
+        </div>
+        <div class="room-card reveal reveal-delay-1">
+          <div class="room-card-image">
+            <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=600&q=80" alt="Vücut Bakımı" loading="lazy">
+          </div>
+          <div class="room-card-body">
+            <div class="room-card-category"><%= lang === 'en' ? 'Body' : 'Vücut' %></div>
+            <h3 class="room-card-title"><%= lang === 'en' ? 'Sea Salt Body Scrub' : 'Deniz Tuzu Vücut Peelingi' %></h3>
+            <p class="room-card-desc"><%= lang === 'en' ? 'Exfoliating body treatment with mineral-rich sea salt and essential oils, leaving skin silky smooth and deeply nourished.' : 'Mineral açısından zengin deniz tuzu ve uçucu yağlarla yapılan vücut peelingi, cildi ipeksi pürüzsüz ve derinlemesine beslenmiş bırakır.' %></p>
+            <div class="room-card-footer">
+              <div class="room-card-price">₺1.500 <span>/ 45 <%= lang === 'en' ? 'min' : 'dk' %></span></div>
+              <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'Book' : 'Rezervasyon' %></a>
+            </div>
+          </div>
+        </div>
+        <div class="room-card reveal reveal-delay-2">
+          <div class="room-card-image">
+            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="Thai Masajı" loading="lazy">
+          </div>
+          <div class="room-card-body">
+            <div class="room-card-category"><%= lang === 'en' ? 'Signature' : 'İmza' %></div>
+            <h3 class="room-card-title"><%= lang === 'en' ? 'Evval Signature Ritual' : 'Evval İmza Ritüeli' %></h3>
+            <p class="room-card-desc"><%= lang === 'en' ? 'Our exclusive 120-minute journey combining hammam, aromatherapy massage, and facial treatment for complete mind-body renewal.' : 'Tam zihin-beden yenilenmesi için hamam, aromaterapi masajı ve yüz bakımını birleştiren özel 120 dakikalık yolculuğumuz.' %></p>
+            <div class="room-card-footer">
+              <div class="room-card-price">₺4.500 <span>/ 120 <%= lang === 'en' ? 'min' : 'dk' %></span></div>
+              <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="room-card-cta"><%= lang === 'en' ? 'Book' : 'Rezervasyon' %></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Spa Packages' : 'Spa Paketleri' %></div>
+        <h2 class="section-title section-title-light reveal reveal-delay-1"><%= lang === 'en' ? 'Wellness Packages' : 'Wellness Paketleri' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+        <p class="section-desc reveal reveal-delay-3" style="color: rgba(255,255,255,0.7);"><%= lang === 'en' ? 'Combine multiple treatments for the ultimate spa experience at special package rates.' : 'Birden fazla tedaviyi özel paket fiyatlarıyla birleştirerek mükemmel spa deneyimini yaşayın.' %></p>
+      </div>
+      <div class="services-glass-grid">
+        <div class="glass-card reveal">
+          <div class="glass-card-icon">🌿</div>
+          <h3><%= lang === 'en' ? 'Relaxation Escape' : 'Rahatlama Kaçamağı' %></h3>
+          <p><%= lang === 'en' ? 'Hammam ritual (45 min) + Aromatherapy massage (60 min) + Refreshments' : 'Hamam ritüeli (45 dk) + Aromaterapi masajı (60 dk) + İkramlar' %></p>
+          <p style="color: var(--gold); font-family: var(--font-heading); font-size: 1.5rem; margin-top: 16px;">₺2.800</p>
+        </div>
+        <div class="glass-card reveal reveal-delay-1">
+          <div class="glass-card-icon">✦</div>
+          <h3><%= lang === 'en' ? 'Couples Retreat' : 'Çiftler Kaçamağı' %></h3>
+          <p><%= lang === 'en' ? 'Private hammam for two (60 min) + Side-by-side massage (75 min) + Gold facial (30 min) + Champagne' : 'İki kişilik özel hamam (60 dk) + Yan yana masaj (75 dk) + Altın yüz bakımı (30 dk) + Şampanya' %></p>
+          <p style="color: var(--gold); font-family: var(--font-heading); font-size: 1.5rem; margin-top: 16px;">₺8.500</p>
+        </div>
+        <div class="glass-card reveal reveal-delay-2">
+          <div class="glass-card-icon">💎</div>
+          <h3><%= lang === 'en' ? 'Royal Indulgence' : 'Kraliyet Lüksü' %></h3>
+          <p><%= lang === 'en' ? 'Full-day access + All signature treatments + Lunch at restaurant + Private relaxation suite' : 'Tam gün erişim + Tüm imza tedaviler + Restoranda öğle yemeği + Özel dinlenme süiti' %></p>
+          <p style="color: var(--gold); font-family: var(--font-heading); font-size: 1.5rem; margin-top: 16px;">₺12.000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPA FACILITIES -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Facilities' : 'Tesisler' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Spa Facilities' : 'Spa Tesisleri' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-card-icon">🧖</div>
+          <h3><%= lang === 'en' ? 'Turkish Hammam' : 'Türk Hamamı' %></h3>
+          <p><%= lang === 'en' ? 'Authentic Ottoman-style hammam with heated marble and traditional bathing rituals.' : 'Isıtılmış mermer ve geleneksel banyo ritüelleriyle otantik Osmanlı tarzı hamam.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-card-icon">♨</div>
+          <h3><%= lang === 'en' ? 'Sauna & Steam' : 'Sauna & Buhar' %></h3>
+          <p><%= lang === 'en' ? 'Finnish sauna and eucalyptus steam room for detoxification and relaxation.' : 'Detoks ve rahatlama için Fin saunası ve okaliptüs buhar odası.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-card-icon">🏊</div>
+          <h3><%= lang === 'en' ? 'Indoor Pool' : 'Kapalı Havuz' %></h3>
+          <p><%= lang === 'en' ? 'Heated indoor pool with panoramic views and hydrotherapy jets.' : 'Panoramik manzaralı ve hidroterapi jetli ısıtmalı kapalı havuz.' %></p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <div class="value-card-icon">🧘</div>
+          <h3><%= lang === 'en' ? 'Yoga Studio' : 'Yoga Stüdyosu' %></h3>
+          <p><%= lang === 'en' ? 'Daily yoga and meditation sessions in our dedicated studio with mountain views.' : 'Dağ manzaralı özel stüdyomuzda günlük yoga ve meditasyon seansları.' %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1920&q=80');">
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content reveal">
+      <h2><%= lang === 'en' ? 'Book Your Spa Experience' : 'Spa Deneyiminizi Rezerve Edin' %></h2>
+      <p><%= lang === 'en' ? 'Let us create a personalized wellness journey for you.' : 'Sizin için kişiselleştirilmiş bir wellness yolculuğu yaratmamıza izin verin.' %></p>
+      <a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="hero-btn hero-btn-gold"><%= lang === 'en' ? 'Reserve Now' : 'Hemen Rezervasyon Yap' %></a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>

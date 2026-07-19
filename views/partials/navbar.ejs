@@ -1,0 +1,36 @@
+<!-- LOADING SCREEN -->
+<div class="loader" id="loader">
+    <div class="loader-logo">Evval<span>.</span></div>
+    <div class="loader-line"></div>
+    <div class="loader-text">Loading</div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+        <a href="/<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="navbar-logo">
+            Evval<span>.</span>
+        </a>
+        <ul class="navbar-links" id="navLinks">
+            <li><a href="/<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="<%= page === 'home' ? 'active' : '' %>"><%= lang === 'en' ? 'Home' : 'Ana Sayfa' %></a></li>
+            <li><a href="/hakkimizda<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="<%= page === 'about' ? 'active' : '' %>"><%= lang === 'en' ? 'About' : 'Hakkımızda' %></a></li>
+            <li><a href="/odalar<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="<%= page === 'rooms' ? 'active' : '' %>"><%= lang === 'en' ? 'Rooms' : 'Odalar' %></a></li>
+            <li><a href="/restoran<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="<%= page === 'restaurant' ? 'active' : '' %>"><%= lang === 'en' ? 'Restaurant' : 'Restoran' %></a></li>
+            <li><a href="/spa<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="<%= page === 'spa' ? 'active' : '' %>">Spa & Wellness</a></li>
+            <li><a href="/galeri<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="<%= page === 'gallery' ? 'active' : '' %>"><%= lang === 'en' ? 'Gallery' : 'Galeri' %></a></li>
+            <li><a href="/iletisim<%= lang !== 'tr' ? '?lang=' + lang : '' %>" class="<%= page === 'contact' ? 'active' : '' %>"><%= lang === 'en' ? 'Contact' : 'İletişim' %></a></li>
+            <li><a href="/rezervasyon<%= lang !== 'tr' ? '?lang=' + lang : '' %>" style="color: var(--gold);"><%= lang === 'en' ? 'Book Now' : 'Rezervasyon' %></a></li>
+            <li>
+                <div class="lang-switch">
+                    <button class="<%= lang === 'tr' ? 'active' : '' %>">TR</button>
+                    <button class="<%= lang === 'en' ? 'active' : '' %>">EN</button>
+                </div>
+            </li>
+        </ul>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>

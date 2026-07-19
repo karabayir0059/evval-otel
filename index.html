@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evval Otel | Lüks & Butik Otel Deneyimi</title>
+    <meta name="description" content="Evval Otel - Sessiz, huzurlu ve lüks butik otel deneyimi. Doğanın kalbinde premium konaklama.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ========== CSS VARIABLES ========== */
+        :root {
+            --cream: #F5F0E8;
+            --white: #FFFFFF;
+            --beige: #E8E0D0;
+            --beige-dark: #D4C9B5;
+            --brown-dark: #2C1810;
+            --brown-medium: #5C3D2E;
+            --gold: #C9A84C;
+            --gold-light: #E8D48B;
+            --gold-dark: #A88930;
+            --text: #1A1A1A;
+            --text-light: #6B6560;
+            --text-muted: #9B9590;
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --transition-slow: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-medium: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Cormorant Garamond', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background-color: var(--cream);
+            overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== LOADING SCREEN ========== */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-logo {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            color: var(--brown-dark);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+
+        .loader-logo span {
+            color: var(--gold);
+        }
+
+        .loader-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+            animation: loaderLine 1.5s ease-in-out infinite;
+        }
+
+        .loader-text {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes loaderLine {
+            0%, 100% { width: 60px; }
+            50% { width: 120px; }
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition-medium);
+        }
+
+        .navbar.scrolled {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 12px 0;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .navbar-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.12em;
+            transition: var(--transition-fast);
+        }
+
+        .navbar-logo span {
+            color: var(--gold);
+        }
+
+        .navbar.scrolled .navbar-logo {
+            color: var(--brown-dark);
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: var(--transition-fast);
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .navbar.scrolled .navbar-links a {
+            color: var(--text-light);
+        }
+
+        .navbar.scrolled .navbar-links a:hover {
+            color: var(--gold);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 6px;
+            margin-left: 16px;
+        }
+
+        .lang-switch button {
+            background: none;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            padding: 4px 8px;
+            border-radius: 2px;
+        }
+
+        .lang-switch button.active {
+            color: var(--gold);
+        }
+
+        .lang-switch button:hover {
+            color: var(--gold-light);
+        }
+
+        .navbar.scrolled .lang-switch button {
+            color: var(--text-muted);
+        }
+
+        .navbar.scrolled .lang-switch button.active {
+            color: var(--gold);
+        }
+
+        .navbar.scrolled .lang-switch button:hover {
+            color: var(--gold);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 1.5px;
+            background: var(--white);
+            transition: var(--transition-fast);
+            border-radius: 1px;
+        }
+
+        .navbar.scrolled .hamburger span {
+            background: var(--brown-dark);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(44, 24, 16, 0.65) 0%,
+                rgba(44, 24, 16, 0.30) 40%,
+                rgba(44, 24, 16, 0.15) 60%,
+                rgba(44, 24, 16, 0.50) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            padding: 0 24px;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-sans);
+            font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeIn 1s ease forwards 0.5s;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: 0.04em;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeIn 1s ease forwards 0.8s;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-line {
+            width: 80px;
+            height: 1px;
+            background: var(--gold);
+            margin: 24px auto;
+            opacity: 0;
+            animation: heroFadeIn 1s ease forwards 1.1s;
+        }
+
+        .hero-desc {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 560px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeIn 1s ease forwards 1.3s;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 16px 48px;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeIn 1s ease forwards 1.6s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transition: var(--transition-medium);
+            z-index: -1;
+        }
+
+        .hero-btn:hover::before {
+            left: 0;
+        }
+
+        .hero-btn:hover {
+            border-color: var(--gold);
+            color: var(--brown-dark);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: heroFadeIn 1s ease forwards 2s;
+        }
+
+        .hero-scroll-text {
+            font-family: var(--font-sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes heroFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        /* ========== SECTION BASE ========== */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-dark {
+            background: var(--brown-dark);
+            color: var(--white);
+        }
+
+        .section-cream {
+            background: var(--cream);
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--brown-dark);
+        }
+
+        .section-title-light {
+            color: var(--white);
+        }
+
+        .section-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .section-dark .section-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ========== SCROLL REVEAL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ========== WELCOME SECTION ========== */
+        .welcome-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .welcome-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .welcome-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .welcome-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .welcome-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid var(--gold);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .welcome-text {
+            padding-right: 40px;
+        }
+
+        .welcome-text .section-tag {
+            text-align: left;
+        }
+
+        .welcome-text h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            font-weight: 500;
+            line-height: 1.25;
+            margin-bottom: 24px;
+            color: var(--brown-dark);
+        }
+
+        .welcome-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .welcome-text .hero-btn {
+            margin-top: 16px;
+            color: var(--brown-dark);
+            border-color: var(--gold);
+        }
+
+        .welcome-text .hero-btn:hover {
+            color: var(--white);
+        }
+
+        /* ========== ROOMS PREVIEW ========== */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .room-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            background: var(--white);
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+
+        .room-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(44, 24, 16, 0.12);
+        }
+
+        .room-card-image {
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .room-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .room-card:hover .room-card-image img {
+            transform: scale(1.05);
+        }
+
+        .room-card-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 6px 16px;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            color: var(--white);
+            letter-spacing: 0.1em;
+        }
+
+        .room-card-body {
+            padding: 28px;
+        }
+
+        .room-card-category {
+            font-family: var(--font-sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .room-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--brown-dark);
+            margin-bottom: 12px;
+        }
+
+        .room-card-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .room-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid var(--beige);
+        }
+
+        .room-card-price {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--gold);
+        }
+
+        .room-card-price span {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .room-card-cta {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--brown-dark);
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .room-card-cta::after {
+            content: '→';
+            transition: var(--transition-fast);
+        }
+
+        .room-card:hover .room-card-cta::after {
+            transform: translateX(4px);
+        }
+
+        .room-card-cta:hover {
+            color: var(--gold);
+        }
+
+        /* ========== PARALLAX ========== */
+        .parallax-section {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 24, 16, 0.55);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 700px;
+            padding: 0 24px;
+        }
+
+        .parallax-content h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .parallax-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+        }
+
+        /* ========== GLASSMORPHISM CARDS ========== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2px;
+            padding: 40px 32px;
+            transition: var(--transition-medium);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201, 168, 76, 0.4);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .glass-card-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .glass-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .glass-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .services-glass-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            background: var(--brown-dark);
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .testimonial-slide {
+            text-align: center;
+            display: none;
+            animation: fadeSlide 0.6s ease;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .testimonial-stars {
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-text {
+            font-family: var(--font-heading);
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
+        }
+
+        .testimonial-author {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .testimonial-author span {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 32px;
+        }
+
+        .testimonial-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .testimonial-dot.active {
+            background: var(--gold);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* ========== STATS ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ========== GALLERY GRID ========== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .gallery-grid-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .gallery-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-grid-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 24, 16, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-medium);
+        }
+
+        .gallery-grid-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay-icon {
+            color: var(--white);
+            font-size: 2rem;
+            transform: scale(0.8);
+            transition: var(--transition-medium);
+        }
+
+        .gallery-grid-item:hover .gallery-overlay-icon {
+            transform: scale(1);
+        }
+
+        /* ========== CONTACT / MAP ========== */
+        .contact-map {
+            width: 100%;
+            height: 400px;
+            filter: grayscale(1) sepia(0.2);
+            border: none;
+        }
+
+        /* ========== WHATSAPP BUTTON ========== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: var(--white);
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+            transition: var(--transition-medium);
+            cursor: pointer;
+            border: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--white);
+        }
+
+        .whatsapp-text {
+            display: none;
+        }
+
+        .whatsapp-btn:hover .whatsapp-text {
+            display: inline;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--brown-dark);
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-brand span {
+            color: var(--gold);
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 24px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-social a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201, 168, 76, 0.1);
+        }
+
+        .footer h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: var(--gold);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 0.05em;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .welcome-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .welcome-text {
+                padding-right: 0;
+            }
+
+            .rooms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-glass-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-grid-item:nth-child(1) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(44, 24, 16, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                z-index: 1001;
+            }
+
+            .navbar-links.open {
+                display: flex;
+            }
+
+            .navbar-links a {
+                font-size: 1rem;
+                color: var(--white);
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 1002;
+            }
+
+            .hamburger.open span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.open span:nth-child(3) {
+                transform: rotate(-45deg) translate(4px, -4px);
+            }
+
+            .lang-switch {
+                margin-left: auto;
+                margin-right: 20px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-glass-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .parallax-section {
+                background-attachment: scroll;
+            }
+
+            .whatsapp-btn {
+                padding: 12px 16px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-text {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== LOADING SCREEN ========== -->
+    <div class="loader" id="loader">
+        <div class="loader-logo">Evval<span>.</span></div>
+        <div class="loader-line"></div>
+        <div class="loader-text">Loading</div>
+    </div>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-logo">Evval<span>.</span></a>
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="#">Ana Sayfa</a></li>
+                <li><a href="#">Odalar</a></li>
+                <li><a href="#">Restoran</a></li>
+                <li><a href="#">Spa</a></li>
+                <li><a href="#">Galeri</a></li>
+                <li><a href="#">İletişim</a></li>
+                <li><a href="#" style="color: var(--gold);">Rezervasyon</a></li>
+                <li>
+                    <div class="lang-switch">
+                        <button class="active">TR</button>
+                        <button>EN</button>
+                    </div>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80" alt="Evval Otel" class="hero-bg">
+        <div class="hero-content">
+            <p class="hero-subtitle">Hoş Geldiniz</p>
+            <h1 class="hero-title">Evval <span>Otel</span></h1>
+            <div class="hero-line"></div>
+            <p class="hero-desc">Doğanın kalbinde, huzurun kucağında unutulmaz bir butik otel deneyimi.</p>
+            <a href="#" class="hero-btn">Rezervasyon Yap</a>
+        </div>
+        <div class="hero-scroll">
+            <span class="hero-scroll-text">Keşfet</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ========== WELCOME ========== -->
+    <section class="section section-cream">
+        <div class="container">
+            <div class="welcome-grid">
+                <div class="welcome-image reveal">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80" alt="Evval Otel Lobisi">
+                </div>
+                <div class="welcome-text reveal reveal-delay-2">
+                    <p class="section-tag">Hakkımızda</p>
+                    <h2>Huzurun ve Zarafetin Buluştuğu Nokta</h2>
+                    <p>
+                        Evval Otel, doğanın eşsiz güzellikleriyle çevrili, her detayı özenle düşünülmüş
+                        bir butik otel deneyimi sunar. Sessizliğin ve huzurun hüküm sürdüğü bu özel mekanda,
+                        zamansız bir lüksün tadını çıkaracaksınız.
+                    </p>
+                    <p>
+                        Geleneksel mimari ile modern tasarımın buluştuğu odalarımız, şefimizin özenle
+                        hazırladığı lezzetler ve yenileyici spa deneyimimizle sizi bekliyoruz.
+                    </p>
+                    <a href="#" class="hero-btn">Daha Fazla Keşfet</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ROOMS ========== -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag">Konaklama</p>
+                <h2 class="section-title">Odalarımız</h2>
+                <div class="section-line"></div>
+                <p class="section-desc">Her biri özenle tasarlanmış odalarımızda konforun ve zarafetin tadını çıkarın.</p>
+            </div>
+            <div class="rooms-grid">
+                <div class="room-card reveal reveal-delay-1">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80" alt="Standart Oda">
+                        <span class="room-card-badge">★ Popüler</span>
+                    </div>
+                    <div class="room-card-body">
+                        <p class="room-card-category">Standart</p>
+                        <h3 class="room-card-title">Klasik Oda</h3>
+                        <p class="room-card-desc">Sıcak ve davetkar atmosferiyle konforlu bir konaklama deneyimi.</p>
+                        <div class="room-card-footer">
+                            <span class="room-card-price">₺2.500 <span>/ gece</span></span>
+                            <a href="#" class="room-card-cta">İncele</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-card reveal reveal-delay-2">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80" alt="Suit Oda">
+                        <span class="room-card-badge">★ En Çok Tercih</span>
+                    </div>
+                    <div class="room-card-body">
+                        <p class="room-card-category">Suit</p>
+                        <h3 class="room-card-title">Executive Suit</h3>
+                        <p class="room-card-desc">Geniş yaşam alanı ve özel balkonuyla premium konfor.</p>
+                        <div class="room-card-footer">
+                            <span class="room-card-price">₺4.500 <span>/ gece</span></span>
+                            <a href="#" class="room-card-cta">İncele</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="room-card reveal reveal-delay-3">
+                    <div class="room-card-image">
+                        <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Aile Odası">
+                        <span class="room-card-badge">★ Premium</span>
+                    </div>
+                    <div class="room-card-body">
+                        <p class="room-card-category">Aile</p>
+                        <h3 class="room-card-title">Aile Suiti</h3>
+                        <p class="room-card-desc">Ailenizle unutulmaz bir tatil için özel olarak tasarlanmış geniş suit.</p>
+                        <div class="room-card-footer">
+                            <span class="room-card-price">₺5.500 <span>/ gece</span></span>
+                            <a href="#" class="room-card-cta">İncele</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PARALLAX ========== -->
+    <section class="parallax-section" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80');">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content reveal">
+            <p class="section-tag" style="color: var(--gold-light);">Restoran</p>
+            <h2>Şefin Özel Lezzetleri</h2>
+            <p>Yerel ve mevsimsel malzemelerle hazırlanan eşsiz lezzetler, şefimizin özenli dokunuşlarıyla sofranızda.</p>
+            <a href="#" class="hero-btn">Menüyü Keşfet</a>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section class="section" style="background: var(--brown-dark);">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag">Hizmetlerimiz</p>
+                <h2 class="section-title section-title-light">Premium Hizmetler</h2>
+                <div class="section-line"></div>
+                <p class="section-desc">Konforunuz için sunduğumuz özenli hizmetlerle kendinizi ayrıcalıklı hissedin.</p>
+            </div>
+            <div class="services-glass-grid">
+                <div class="glass-card reveal reveal-delay-1">
+                    <div class="glass-card-icon">✦</div>
+                    <h3>Spa & Wellness</h3>
+                    <p>Geleneksel ve modern terapilerle bedeninizi ve ruhunuzu yenileyin.</p>
+                </div>
+                <div class="glass-card reveal reveal-delay-2">
+                    <div class="glass-card-icon">✦</div>
+                    <h3>Özel Şef Menüsü</h3>
+                    <p>Mevsimsel malzemelerle hazırlanan fine dining deneyimi.</p>
+                </div>
+                <div class="glass-card reveal reveal-delay-3">
+                    <div class="glass-card-icon">✦</div>
+                    <h3>Sonsuzluk Havuzu</h3>
+                    <p>Doğa manzaralı sonsuzluk havuzumuzda huzurun tadını çıkarın.</p>
+                </div>
+                <div class="glass-card reveal reveal-delay-1">
+                    <div class="glass-card-icon">✦</div>
+                    <h3>Transfer Hizmeti</h3>
+                    <p>Havalimanından otelimize kadar VIP transfer konforu.</p>
+                </div>
+                <div class="glass-card reveal reveal-delay-2">
+                    <div class="glass-card-icon">✦</div>
+                    <h3>Özel Turlar</h3>
+                    <p>Bölgenin eşsiz güzelliklerini rehber eşliğinde keşfedin.</p>
+                </div>
+                <div class="glass-card reveal reveal-delay-3">
+                    <div class="glass-card-icon">✦</div>
+                    <h3>7/24 Oda Servisi</h3>
+                    <p>Ne zaman isterseniz, özenle hazırlanmış lezzetler odanızda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <section class="section" style="background: #1A0E0A; padding: 80px 0;">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="reveal">
+                    <div class="stat-number" data-count="12">0</div>
+                    <p class="stat-label">Yıllık Deneyim</p>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <div class="stat-number" data-count="28">0</div>
+                    <p class="stat-label">Özel Oda</p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="stat-number" data-count="15">0</div>
+                    <p class="stat-label">Ödül</p>
+                </div>
+                <div class="reveal reveal-delay-3">
+                    <div class="stat-number" data-count="5000">0</div>
+                    <p class="stat-label">Mutlu Misafir</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag">Yorumlar</p>
+                <h2 class="section-title section-title-light">Misafirlerimiz Ne Diyor?</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="testimonial-carousel reveal">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Hayatımda kaldığım en güzel otel. Her detay düşünülmüş, personel inanılmaz ilgili. Sonsuzluk havuzu ve spa deneyimi unutulmazdı."</p>
+                    <p class="testimonial-author">Ayşe Yılmaz <span>• İstanbul</span></p>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Eşsiz bir huzur ve lüks deneyimi. Restorandaki lezzetler ve şefin sunumu mükemmeldi. Kesinlikle tekrar geleceğiz."</p>
+                    <p class="testimonial-author">Mehmet Demir <span>• Ankara</span></p>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Sessizliğin ve doğanın kalbinde bir cennet. Odaların tasarımı, manzarası ve ilgili ekip her şeyi kusursuz kıldı."</p>
+                    <p class="testimonial-author">Sarah Johnson <span>• London</span></p>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <button class="testimonial-dot active" data-index="0"></button>
+                <button class="testimonial-dot" data-index="1"></button>
+                <button class="testimonial-dot" data-index="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section class="section section-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-tag">Galeri</p>
+                <h2 class="section-title">Otelimizden Kareler</h2>
+                <div class="section-line"></div>
+            </div>
+        </div>
+        <div class="gallery-grid reveal">
+            <div class="gallery-grid-item">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Otel dış görünüş">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-icon">⊕</span>
+                </div>
+            </div>
+            <div class="gallery-grid-item">
+                <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80" alt="Spa">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-icon">⊕</span>
+                </div>
+            </div>
+            <div class="gallery-grid-item">
+                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80" alt="Havuz">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-icon">⊕</span>
+                </div>
+            </div>
+            <div class="gallery-grid-item">
+                <img src="https://images.unsplash.com/photo-1551918120-9739cb430c6d?w=600&q=80" alt="Restoran">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-icon">⊕</span>
+                </div>
+            </div>
+            <div class="gallery-grid-item">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80" alt="Oda">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-icon">⊕</span>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;" class="reveal">
+            <a href="#" class="hero-btn" style="color: var(--brown-dark); border-color: var(--gold); display: inline-flex;">Tüm Galeriyi Gör</a>
+        </div>
+    </section>
+
+    <!-- ========== GOOGLE MAPS ========== -->
+    <section class="section" style="padding: 0;">
+        <iframe class="contact-map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000.0!2d28.0!3d41.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDAwJzAwLjAiTiAyOMKwMDAnMDAuMCJF!5e0!3m2!1str!2str!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">Evval<span>.</span></div>
+                    <p class="footer-desc">
+                        Doğanın kalbinde, sessizliğin ve huzurun buluştuğu nokta. 
+                        Her anınızı özel kılmak için tasarlanmış butik otel deneyimi.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                        <a href="#" aria-label="TripAdvisor">TA</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Linkler</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Ana Sayfa</a></li>
+                        <li><a href="#">Odalar</a></li>
+                        <li><a href="#">Restoran</a></li>
+                        <li><a href="#">Spa & Wellness</a></li>
+                        <li><a href="#">Galeri</a></li>
+                        <li><a href="#">İletişim</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hizmetler</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Spa & Wellness</a></li>
+                        <li><a href="#">Havuz</a></li>
+                        <li><a href="#">Transfer</a></li>
+                        <li><a href="#">Özel Turlar</a></li>
+                        <li><a href="#">Oda Servisi</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>İletişim</h4>
+                    <div class="footer-contact-item">
+                        📍 Örnek Mahallesi, Doğa Caddesi No:1
+                    </div>
+                    <div class="footer-contact-item">
+                        📞 +90 (555) 123 45 67
+                    </div>
+                    <div class="footer-contact-item">
+                        ✉ info@evvalotel.com
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Evval Otel. Tüm hakları saklıdır.</span>
+                <span>Premium Butik Otel Deneyimi</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== WHATSAPP BUTTON ========== -->
+    <button class="whatsapp-btn" id="whatsappBtn" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="whatsapp-text">Bize Ulaşın</span>
+    </button>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // LOADING SCREEN
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                document.body.classList.add('loaded');
+            }, 2000);
+        });
+
+        // NAVBAR SCROLL EFFECT
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // MOBILE HAMBURGER
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // SCROLL REVEAL
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // TESTIMONIAL CAROUSEL
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(parseInt(dot.dataset.index));
+            });
+        });
+
+        // Auto advance
+        setInterval(() => {
+            const next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }, 5000);
+
+        // COUNTER ANIMATION
+        const statNumbers = document.querySelectorAll('.stat-number');
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.counted) {
+                    entry.target.dataset.counted = 'true';
+                    const target = parseInt(entry.target.dataset.count);
+                    animateCounter(entry.target, target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(el => counterObserver.observe(el));
+
+        function animateCounter(element, target) {
+            const duration = 2000;
+            const steps = 60;
+            const increment = target / steps;
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString('tr-TR');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString('tr-TR');
+                }
+            }, duration / steps);
+        }
+
+        // WHATSAPP BUTTON
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            window.open('https://wa.me/905551234567?text=Merhaba%2C%20Evval%20Otel%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.', '_blank');
+        });
+    </script>
+</body>
+</html>

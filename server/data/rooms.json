@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "category": "standart",
+    "badge": "★ Popüler",
+    "image": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80",
+    "tr": { "category_name": "Standart", "title": "Klasik Oda", "desc": "Sıcak ve davetkar atmosferiyle konforlu bir konaklama deneyimi." },
+    "en": { "category_name": "Standard", "title": "Classic Room", "desc": "A comfortable stay with a warm and inviting atmosphere." },
+    "price": 2500,
+    "currency": "₺",
+    "features": ["King Bed", "Mini Bar", "LCD TV", "WiFi", "Klima"]
+  },
+  {
+    "id": 2,
+    "category": "suit",
+    "badge": "★ En Çok Tercih Edilen",
+    "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80",
+    "tr": { "category_name": "Suit", "title": "Executive Suit", "desc": "Geniş yaşam alanı ve özel balkonuyla premium konfor." },
+    "en": { "category_name": "Suite", "title": "Executive Suite", "desc": "Premium comfort with a spacious living area and private balcony." },
+    "price": 4500,
+    "currency": "₺",
+    "features": ["King Bed", "Oturma Alanı", "Özel Balkon", "Jakuzi", "Mini Bar", "WiFi"]
+  },
+  {
+    "id": 3,
+    "category": "aile",
+    "badge": "★ Premium",
+    "image": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=80",
+    "tr": { "category_name": "Aile", "title": "Aile Suiti", "desc": "Ailenizle unutulmaz bir tatil için özel olarak tasarlanmış geniş suit." },
+    "en": { "category_name": "Family", "title": "Family Suite", "desc": "A spacious suite specially designed for an unforgettable holiday with your family." },
+    "price": 5500,
+    "currency": "₺",
+    "features": ["2 Yatak Odası", "Oturma Alanı", "Mutfak", "Özel Bahçe", "Mini Bar", "WiFi"]
+  }
+]

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yorumlar - Evval Hotel Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="admin-body">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-logo">Evval<span>.</span></div>
+      <nav class="admin-sidebar-nav">
+        <a href="/admin/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">📊 Dashboard</a>
+        <a href="/admin/pages" class="<%= page === 'pages' ? 'active' : '' %>">📝 Sayfalar</a>
+        <a href="/admin/rooms" class="<%= page === 'rooms' ? 'active' : '' %>">🛏 Odalar</a>
+        <a href="/admin/menu" class="<%= page === 'menu' ? 'active' : '' %>">🍽 Menü</a>
+        <a href="/admin/gallery" class="<%= page === 'gallery' ? 'active' : '' %>">🖼 Galeri</a>
+        <a href="/admin/reviews" class="<%= page === 'reviews' ? 'active' : '' %>">⭐ Yorumlar</a>
+        <a href="/admin/reservations" class="<%= page === 'reservations' ? 'active' : '' %>">📋 Rezervasyonlar</a>
+        <a href="/admin/settings" class="<%= page === 'settings' ? 'active' : '' %>">⚙ Ayarlar</a>
+      </nav>
+    </div>
+
+    <div class="admin-main">
+      <div class="admin-header">
+        <h1>Yorumlar</h1>
+        <button id="logoutBtn" class="admin-btn">Çıkış</button>
+      </div>
+
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Yazar</th>
+            <th>Yorum</th>
+            <th>Puan</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (reviews && reviews.length > 0) { %>
+            <% reviews.forEach(function(review) { %>
+              <tr>
+                <td><%= review.author %></td>
+                <td><%= review.text ? review.text.substring(0, 100) + (review.text.length > 100 ? '...' : '') : '' %></td>
+                <td>
+                  <% for (var i = 0; i < 5; i++) { %>
+                    <%= i < review.stars ? '★' : '☆' %>
+                  <% } %>
+                </td>
+                <td>
+                  <% if (review.approved) { %>
+                    <span style="color:green;font-weight:bold;">Onaylı</span>
+                  <% } else { %>
+                    <span style="color:orange;font-weight:bold;">Bekliyor</span>
+                  <% } %>
+                </td>
+                <td>
+                  <% if (!review.approved) { %>
+                    <button class="admin-btn admin-btn-primary" onclick="approveReview('<%= review.id %>', true)">Onayla</button>
+                  <% } else { %>
+                    <button class="admin-btn" onclick="approveReview('<%= review.id %>', false)">Reddet</button>
+                  <% } %>
+                  <button class="admin-btn admin-btn-danger" onclick="deleteReview('<%= review.id %>')">Sil</button>
+                </td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr><td colspan="5" style="text-align:center;">Henüz yorum yok</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="/js/admin.js"></script>
+  <script>
+    async function approveReview(id, approved) {
+      const res = await fetch('/api/reviews/' + id + '/approve', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ approved: approved })
+      });
+      if (res.ok) location.reload();
+      else alert('İşlem sırasında hata oluştu');
+    }
+
+    async function deleteReview(id) {
+      if (!confirm('Bu yorumu silmek istediğinize emin misiniz?')) return;
+      const res = await fetch('/api/reviews/' + id, { method: 'DELETE' });
+      if (res.ok) location.reload();
+      else alert('Silme işleminde hata oluştu');
+    }
+  </script>
+</body>
+</html>

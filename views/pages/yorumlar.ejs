@@ -1,0 +1,158 @@
+<%- include('../partials/head', { lang, content: {}, page: 'reviews' }) %>
+<%- include('../partials/navbar', { lang, page: 'reviews' }) %>
+
+<main>
+  <!-- HERO -->
+  <section class="page-hero">
+    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1920&q=80" alt="Evval Otel Yorumlar" class="page-hero-bg" loading="eager">
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <h1><%= lang === 'en' ? 'Guest Reviews' : 'Misafir Yorumları' %></h1>
+      <p><%= lang === 'en' ? 'What our guests say about their experience' : 'Misafirlerimiz deneyimleri hakkında ne diyor' %></p>
+    </div>
+  </section>
+
+  <!-- REVIEW BADGES -->
+  <section class="section section-cream" style="padding: 60px 0;">
+    <div class="container">
+      <div style="display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap;" class="reveal">
+        <div style="text-align: center;">
+          <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--gold);">4.9</div>
+          <div style="color: var(--gold); font-size: 1.2rem; letter-spacing: 4px; margin: 8px 0;">★★★★★</div>
+          <div style="font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);">TripAdvisor</div>
+        </div>
+        <div style="width: 1px; height: 60px; background: var(--beige-dark);"></div>
+        <div style="text-align: center;">
+          <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--gold);">9.4</div>
+          <div style="color: var(--gold); font-size: 1.2rem; letter-spacing: 4px; margin: 8px 0;">★★★★★</div>
+          <div style="font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);">Booking.com</div>
+        </div>
+        <div style="width: 1px; height: 60px; background: var(--beige-dark);"></div>
+        <div style="text-align: center;">
+          <div style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 600; color: var(--gold);">4.8</div>
+          <div style="color: var(--gold); font-size: 1.2rem; letter-spacing: 4px; margin: 8px 0;">★★★★★</div>
+          <div style="font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);">Google</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS GRID -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Testimonials' : 'Referanslar' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Guest Experiences' : 'Misafir Deneyimleri' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+
+      <% if (reviews && reviews.length) { %>
+        <div class="rooms-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <% reviews.forEach(function(review, index) { %>
+            <div class="room-card reveal<%= index % 2 === 1 ? ' reveal-delay-1' : '' %>" style="cursor: default;">
+              <div class="room-card-body" style="padding: 32px;">
+                <div style="color: var(--gold); font-size: 1rem; letter-spacing: 4px; margin-bottom: 16px;">
+                  <% for (var i = 0; i < 5; i++) { %><%= i < review.rating ? '★' : '☆' %><% } %>
+                </div>
+                <p style="font-family: var(--font-heading); font-size: 1.05rem; font-style: italic; color: var(--text); line-height: 1.8; margin-bottom: 20px;">"<%= review.text || review.comment %>"</p>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 1rem; color: var(--brown-dark); font-weight: 600;">
+                    <%= (review.name || 'A').charAt(0).toUpperCase() %>
+                  </div>
+                  <div>
+                    <div style="font-family: var(--font-sans); font-size: 0.8rem; font-weight: 500; color: var(--brown-dark);"><%= review.name || (lang === 'en' ? 'Guest' : 'Misafir') %></div>
+                    <div style="font-family: var(--font-sans); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.05em;"><%= review.date || '' %> <% if (review.source) { %> · <%= review.source %><% } %></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      <% } else { %>
+        <div style="text-align: center; padding: 60px 0;">
+          <p style="font-size: 1.1rem; color: var(--text-light);"><%= lang === 'en' ? 'Reviews are loading. Please check back soon.' : 'Yorumlar yüklenmektedir. Lütfen daha sonra tekrar kontrol edin.' %></p>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- REVIEW FORM -->
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal"><%= lang === 'en' ? 'Share Your Experience' : 'Deneyiminizi Paylaşın' %></div>
+        <h2 class="section-title reveal reveal-delay-1"><%= lang === 'en' ? 'Leave a Review' : 'Yorum Bırakın' %></h2>
+        <div class="section-line reveal reveal-delay-2"></div>
+      </div>
+      <div style="max-width: 700px; margin: 0 auto;">
+        <form id="reviewForm" class="booking-form reveal" style="padding: 40px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="form-group">
+              <label for="reviewName"><%= lang === 'en' ? 'Your Name' : 'Adınız' %></label>
+              <input type="text" id="reviewName" name="name" class="form-control" required placeholder="<%= lang === 'en' ? 'Enter your name' : 'Adınızı girin' %>">
+            </div>
+            <div class="form-group">
+              <label for="reviewEmail"><%= lang === 'en' ? 'Email' : 'E-posta' %></label>
+              <input type="email" id="reviewEmail" name="email" class="form-control" required placeholder="<%= lang === 'en' ? 'your@email.com' : 'eposta@adresiniz.com' %>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reviewRating"><%= lang === 'en' ? 'Rating' : 'Puan' %></label>
+            <select id="reviewRating" name="rating" class="form-control" required>
+              <option value="5">★★★★★ — <%= lang === 'en' ? 'Excellent' : 'Mükemmel' %></option>
+              <option value="4">★★★★☆ — <%= lang === 'en' ? 'Very Good' : 'Çok İyi' %></option>
+              <option value="3">★★★☆☆ — <%= lang === 'en' ? 'Good' : 'İyi' %></option>
+              <option value="2">★★☆☆☆ — <%= lang === 'en' ? 'Average' : 'Orta' %></option>
+              <option value="1">★☆☆☆☆ — <%= lang === 'en' ? 'Poor' : 'Kötü' %></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="reviewText"><%= lang === 'en' ? 'Your Review' : 'Yorumunuz' %></label>
+            <textarea id="reviewText" name="text" class="form-control" rows="5" required placeholder="<%= lang === 'en' ? 'Share your experience with us...' : 'Deneyiminizi bizimle paylaşın...' %>"></textarea>
+          </div>
+          <div style="text-align: center; margin-top: 24px;">
+            <button type="submit" class="hero-btn hero-btn-gold" style="border: 1px solid var(--gold); background: var(--gold); color: var(--white); padding: 14px 48px; cursor: pointer;">
+              <%= lang === 'en' ? 'Submit Review' : 'Yorum Gönder' %>
+            </button>
+          </div>
+          <div id="reviewSuccess" style="display: none; text-align: center; margin-top: 20px; color: var(--gold); font-family: var(--font-sans); font-size: 0.85rem;">
+            <%= lang === 'en' ? 'Thank you for your review! It will be published after moderation.' : 'Yorumunuz için teşekkürler! Onaydan sonra yayınlanacaktır.' %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var reviewForm = document.getElementById('reviewForm');
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var formData = new FormData(reviewForm);
+      var data = Object.fromEntries(formData.entries());
+      data.rating = parseInt(data.rating);
+      try {
+        var res = await fetch('/api/reviews', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var result = await res.json();
+        if (result.success) {
+          reviewForm.reset();
+          document.getElementById('reviewSuccess').style.display = 'block';
+          setTimeout(function() {
+            document.getElementById('reviewSuccess').style.display = 'none';
+          }, 5000);
+        }
+      } catch (err) {
+        alert('<%= lang === "en" ? "An error occurred. Please try again." : "Bir hata oluştu. Lütfen tekrar deneyin." %>');
+      }
+    });
+  }
+});
+</script>
+
+<%- include('../partials/footer', { lang, settings: typeof settings !== 'undefined' ? settings : {} }) %>
